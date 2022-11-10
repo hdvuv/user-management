@@ -1,0 +1,124 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Phạm Minh Hải",
+      "sex": "Nam",
+      "phone": "0123456789",
+      "email": "hai.pm@gmail.com",
+      "address": "Ha Noi",
+      "job": "developer",
+      "company": "Luvina SJC",
+      "position": "staff",
+      "workingAddress": "106 Hoàng Quốc Việt"
+    },
+    {
+      "name": "Nguyễn Viết Hoàng",
+      "sex": "Nam",
+      "phone": "0125441568",
+      "email": "hoang.nv@gmail.com",
+      "address": "Hưng Yên",
+      "job": "sale",
+      "company": "Viettel",
+      "position": "staff",
+      "workingAddress": "35 Cầu Giấy",
+      "id": 2
+    },
+    {
+      "name": "Nguyễn Thị Thùy Dung",
+      "sex": "Nữ",
+      "phone": "0356235664",
+      "email": "dung.ntt@gmail.com",
+      "address": "Cao Bằng",
+      "job": "sale",
+      "company": "Viettel",
+      "position": "leader",
+      "workingAddress": "35 Cầu Giấy",
+      "id": 3
+    },
+    {
+      "name": "Nguyễn Thị Liên",
+      "sex": "Nữ",
+      "phone": "0356235664",
+      "email": "lien.nt@gmail.com",
+      "address": "Hà Nội",
+      "job": "recruiter",
+      "company": "CMC",
+      "position": "staff",
+      "workingAddress": "123 Võ Thị Sáu",
+      "id": 4
+    },
+    {
+      "name": "Nguyễn Xuân Tùng",
+      "sex": "Nam",
+      "phone": "0968414125",
+      "email": "tung.nx@gmail.com",
+      "address": "Hà Nội",
+      "job": "developer",
+      "company": "Luvina SJC",
+      "position": "staff",
+      "workingAddress": "106 Hoàng Quốc Việt",
+      "id": 5
+    },
+    {
+      "name": "Đỗ Quốc Việt",
+      "sex": "Nam",
+      "phone": "0968392385",
+      "email": "viet.dq@gmail.com",
+      "address": "Hải Phòng",
+      "job": "secretary",
+      "company": "TMA solutions",
+      "position": "staff",
+      "workingAddress": "111 Nguyễn Đình Chính",
+      "id": 6
+    },
+    {
+      "name": "Hoàng Thị Mỹ Hạnh",
+      "sex": "Nữ",
+      "phone": "0968123123",
+      "email": "hanh.htm@gmail.com",
+      "address": "Hải Phòng",
+      "job": "secretary",
+      "company": "VNG Corp",
+      "position": "staff",
+      "workingAddress": "10 Đặng Văn Ngữ",
+      "id": 7
+    },
+    {
+      "name": "Mai Xuân Thanh",
+      "sex": "Nam",
+      "phone": "0968238520",
+      "email": "thanh.mx@gmail.com",
+      "address": "lạng Sơn",
+      "job": "manager",
+      "company": "CMC Corporation",
+      "position": "staff",
+      "workingAddress": "121 Ngô Gia Tự",
+      "id": 8
+    },
+    {
+      "name": "Dương Đức Tú",
+      "sex": "Nam",
+      "phone": "0968119977",
+      "email": "tu.dd@gmail.com",
+      "address": "Hà Nội",
+      "job": "IT",
+      "company": "KMS Technology",
+      "position": "expert",
+      "workingAddress": "28 Trường Sơn",
+      "id": 9
+    },
+    {
+      "name": "Hồ Thị Liên Thảo",
+      "sex": "Nữ",
+      "phone": "0968003388",
+      "email": "thao.htl@gmail.com",
+      "address": "Hà Nội",
+      "job": "IT",
+      "company": "Harvey Nash",
+      "position": "staff",
+      "workingAddress": "239 Xuân Thủy",
+      "id": 10
+    }
+  ]
+}

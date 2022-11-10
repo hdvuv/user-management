@@ -1,0 +1,42 @@
+import styled from 'styled-components';
+
+export const Container = styled.div`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+export const Wrapper = styled.div`
+    max-height: 500px;
+    width: 800px;
+    margin-top: -500px;
+`
+export const PageTittle = styled.div`
+    p {
+        font-weight: bold;
+        font-size: 25px;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 50px;
+        letter-spacing: 2px;
+    }
+`
+export const ButtonDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+        width: 80px;
+        line-height: 30px;
+        background-color: #4285f4;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-weight: bold;
+        margin-right: 20px;
+    }
+    button::hover{
+        background-color: #365899;
+    }
+`
