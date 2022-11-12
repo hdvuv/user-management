@@ -3,7 +3,7 @@
 ## Step 1: In the project directory, run the command below
 `npm start`
 
-This app will run in [http://localhost:3500]
+This app will run in [http://localhost:3001]
 
 
 ## Step 2: Run json server to mock data for app, run the commands below
