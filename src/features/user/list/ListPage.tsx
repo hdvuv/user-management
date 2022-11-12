@@ -1,36 +1,22 @@
-import { useRef, useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import {ListContent } from './ListStyled';
+import { createSearchParams, useNavigate } from 'react-router-dom';
+import { ListContent } from './ListStyled';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
+import { useGetUsersQuery } from "../../../services/user/userApi"
 
 const ListUser = () => {
     const navigate = useNavigate();
-    const [errMsg, setErrMsg] = useState('');
-    const [data, setData] = useState();
-    const userApi = 'http://localhost:3000/users';
+    const { data, error, isLoading } = useGetUsersQuery();
 
-    useEffect(() => {
-        axios.get(userApi)
-            .then(res => {
-                console.log(res.data);
-                setData(res.data);
-            })
-            .catch(error => console.log(error));
-    }, []);
-
-    /**
-     * Handle redirect to Create page
-     */
     const handleCreateClick = () => {
         navigate('/create1', { replace: true });
     }
 
-    /**
-     * Handle redirect to Detail page
-     */
-    const handleDetailClick = () => {
-        navigate('/detail');
+    const handleDetailClick = (event: any) => {
+        const param = { id: event.currentTarget.id };
+        navigate({
+            pathname: '/detail',
+            search: `?${createSearchParams(param)}`,
+        });
     }
 
     return (
@@ -40,94 +26,44 @@ const ListUser = () => {
                     <PageTittle>
                         <p>List user page</p>
                     </PageTittle>
-                    <ListContent>
-                        <table>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a className='' href='' onClick={handleDetailClick}>Nguyễn Văn A
-                                    </a>
-                                </td>
-                                <td>
-                                    a.nv@gmail.com
-                                </td>
-                                <td>
-                                    0123456789
-                                </td>
-                                <td>
-                                    Ha Noi
-                                </td>
-                            </tr>
-                            <tr >
-                                <td>
-                                    <a className='' href='' onClick={handleDetailClick}>Nguyễn Văn A
-                                    </a>
-                                </td>
-                                <td>
-                                    a.nv@gmail.com
-                                </td>
-                                <td>
-                                    0123456789
-                                </td>
-                                <td>
-                                    Ha Noi
-                                </td>
-                            </tr>
-                            <tr >
-                                <td>
-                                    <a className='' href='' onClick={handleDetailClick}>Nguyễn Văn A
-                                    </a>
-                                </td>
-                                <td>
-                                    a.nv@gmail.com
-                                </td>
-                                <td>
-                                    0123456789
-                                </td>
-                                <td>
-                                    Ha Noi
-                                </td>
-                            </tr>
-                            <tr >
-                                <td>
-                                    <a className='' href='' onClick={handleDetailClick}>Nguyễn Văn A
-                                    </a>
-                                </td>
-                                <td>
-                                    a.nv@gmail.com
-                                </td>
-                                <td>
-                                    0123456789
-                                </td>
-                                <td>
-                                    Ha Noi
-                                </td>
-                            </tr>
-                            <tr >
-                                <td>
-                                    <a className='' href='' onClick={handleDetailClick}>Nguyễn Văn A
-                                    </a>
-                                </td>
-                                <td>
-                                    a.nv@gmail.com
-                                </td>
-                                <td>
-                                    0123456789
-                                </td>
-                                <td>
-                                    Ha Noi
-                                </td>
-                            </tr>
-                        </table>
-                    </ListContent>
-                    <ButtonDiv>
-                        <button onClick={handleCreateClick}>Create</button>
-                    </ButtonDiv>
+                    {error ? (
+                        <> Oh no, there was an error </>
+                    ) : isLoading ? (
+                        <> Loading...</>
+                    ) : data ? (
+                        <>
+                            <ListContent>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Address</th>
+                                        </tr>
+                                        {data?.map((user, index) => {
+                                            return (
+                                                <tr key={index}>
+                                                    <td>{user?.id}</td>
+                                                    <td>
+                                                        <a id={user?.id} href='' onClick={event => handleDetailClick(event)}>{user?.name}
+                                                        </a>
+                                                    </td>
+                                                    <td>{user?.email}</td>
+                                                    <td>{user?.phone}</td>
+                                                    <td>{user?.address}</td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            </ListContent>
+                            <ButtonDiv>
+                                <button onClick={handleCreateClick}>Create</button>
+                            </ButtonDiv>
+                        </>
+                    ) : null}
                 </Wrapper>
             </Container>
         </>

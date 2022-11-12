@@ -119,6 +119,30 @@
       "position": "staff",
       "workingAddress": "239 Xuân Thủy",
       "id": 10
+    },
+    {
+      "name": "Văn Đình Hoàng Vũ",
+      "sex": "Nam",
+      "phone": "0346764044",
+      "email": "vu.vdh@gmail.com",
+      "address": "43 Cổ Nhuế",
+      "job": "developer",
+      "company": "Luvina SJC",
+      "position": "staff",
+      "workingAddress": "106 Hoàng Quốc Việt",
+      "id": 11
+    },
+    {
+      "name": "Đặng Lê Nguyên",
+      "sex": "Nữ",
+      "phone": "025142616",
+      "email": "nguyen.dl@gmail.com",
+      "address": "Hà Nam",
+      "job": "Telesale",
+      "company": "FPT software",
+      "position": "Leader",
+      "workingAddress": "50 Phạm Văn Mạch",
+      "id": 12
     }
   ]
 }

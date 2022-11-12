@@ -14,6 +14,7 @@ export const DetailContent = styled.div`
         height: 25px;
     }
     tr > td:first-child {
+        width: 50%;
         font-weight: bold;
     }
     td {

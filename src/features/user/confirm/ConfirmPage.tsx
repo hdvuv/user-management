@@ -1,12 +1,16 @@
 
-import { useRef, useState, useEffect, useContext } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTypedSelector } from '../../../redux/store/store';
+import { useCreateUserMutation } from '../../../services/user/userApi';
+import { userSelector } from '../../../services/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { ConfirmContent } from './ConfirmStyled';
 
 const ConfirmPage = () => {
     const navigate = useNavigate();
-    const [errMsg, setErrMsg] = useState('');
+    const user = useTypedSelector(userSelector).user;
+    const [createUser, createUserResult] = useCreateUserMutation();
 
     const handleBack1 = () => {
         navigate('/create1', { replace: true });
@@ -16,68 +20,86 @@ const ConfirmPage = () => {
         navigate('/create2', { replace: true });
     }
 
-
-    const handleNext = () => {
-        navigate('/list', { replace: true });
+    const handleNext = async () => {
+        console.log("user = " + user);
+        createUser({
+            name: user.name,
+            sex: user.sex,
+            phone: user.phone,
+            email: user.email,
+            address: user.address,
+            job: user.job,
+            company: user.company,
+            position: user.position,
+            workingAddress: user.workingAddress
+        });
     }
+
+    useEffect(() => {
+        if (createUserResult.isUninitialized) return;
+        navigate('/list', { replace: true });
+    }, [createUserResult.isSuccess]);
+
+    if (createUserResult.isLoading) return (<> Loading...</>);
+    if (createUserResult.isError) return (<> Oh no, there was an error</>);
 
     return (
         <>
             <Container>
                 <Wrapper>
                     <PageTittle>
-                        <p className='page-title'>CONFIRM USER PAGE</p>
+                        <p>Confirm user page</p>
                     </PageTittle>
                     <ConfirmContent>
-                        <div className='table1'>
-                            <table>
+                        <table>
+                            <tbody>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Nguyễn Văn A</td>
+                                    <td>{user.name}</td>
                                 </tr>
                                 <tr>
                                     <td>Sex</td>
-                                    <td>Nam</td>
+                                    <td>{user.sex}</td>
                                 </tr>
                                 <tr>
                                     <td>Phone</td>
-                                    <td>0123456789</td>
+                                    <td>{user.phone}</td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
-                                    <td>a.nv@gmail.com</td>
+                                    <td>{user.email}</td>
                                 </tr>
                                 <tr>
                                     <td>Address</td>
-                                    <td>Ha Noi</td>
+                                    <td>{user.address}</td>
                                 </tr>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                         <ButtonDiv>
                             <button onClick={handleBack1} >Back</button>
                         </ButtonDiv>
                     </ConfirmContent>
                     <ConfirmContent>
-                        <div className='table2'>
-                            <table>
+                        <table>
+                            <tbody>
                                 <tr>
                                     <td>Job</td>
-                                    <td>Developer</td>
+                                    <td>{user.job}</td>
                                 </tr>
                                 <tr>
                                     <td>Position</td>
-                                    <td>Leader</td>
+                                    <td>{user.position}</td>
                                 </tr>
                                 <tr>
                                     <td>Company</td>
-                                    <td>Luvina SJC</td>
+                                    <td>{user.company}</td>
                                 </tr>
                                 <tr>
                                     <td>Working address</td>
-                                    <td>106 Hoàng Quốc Việt</td>
+                                    <td>{user.workingAddress}</td>
                                 </tr>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                         <ButtonDiv>
                             <button onClick={handleBack2}>Back</button>
                         </ButtonDiv>

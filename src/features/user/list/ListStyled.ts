@@ -10,9 +10,11 @@ export const ListContent = styled.div`
     table, th, td {
         border: 1px solid #ccc;
     }
+    tr th:first-child{
+        width: 10%;
+    }
     th {
         font-size: 18px;
-        width: 25%;
     }
     tr {
         height: 25px;

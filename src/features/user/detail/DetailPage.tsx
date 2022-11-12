@@ -1,15 +1,13 @@
-import { useRef, useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { DetailContent } from './DetailStyled';
+import { useGetUserQuery } from "../../../services/user/userApi"
 
 const DetailUser = () => {
     const navigate = useNavigate();
-    const [errMsg, setErrMsg] = useState('');
-
-    const handleBack = () => {
-        navigate('/list', { replace: true });
-    }
+    const search = useLocation().search;
+    const id = new URLSearchParams(search).get('id');
+    const { data, error, isLoading } = useGetUserQuery(id ? id : "1");
 
     return (
         <>
@@ -18,49 +16,59 @@ const DetailUser = () => {
                     <PageTittle>
                         <p >Detail user page</p>
                     </PageTittle>
-                    <DetailContent>
-                        <table>
-                            <tr>
-                                <td>Name</td>
-                                <td>Nguyễn Văn A</td>
-                            </tr>
-                            <tr>
-                                <td>Sex</td>
-                                <td>Nam</td>
-                            </tr>
-                            <tr>
-                                <td>Phone</td>
-                                <td>0123456789</td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>a.nv@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>Address</td>
-                                <td>Ha Noi</td>
-                            </tr>
-                            <tr>
-                                <td>Job</td>
-                                <td>Developer</td>
-                            </tr>
-                            <tr>
-                                <td>Position</td>
-                                <td>Leader</td>
-                            </tr>
-                            <tr>
-                                <td>Company</td>
-                                <td>Luvina SJC</td>
-                            </tr>
-                            <tr>
-                                <td>Working address</td>
-                                <td>106 Hoàng Quốc Việt</td>
-                            </tr>
-                        </table>
-                    </DetailContent>
-                    <ButtonDiv>
-                        <button onClick={handleBack}>Back</button>
-                    </ButtonDiv>
+                    {error ? (
+                        <> Oh no, there was an error </>
+                    ) : isLoading ? (
+                        <> Loading...</>
+                    ) : data ? (
+                        <>
+                            <DetailContent>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>{data?.name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sex</td>
+                                            <td>{data?.sex}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phone</td>
+                                            <td>{data?.phone}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>{data?.email}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address</td>
+                                            <td>{data?.address}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Job</td>
+                                            <td>{data?.job}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Position</td>
+                                            <td>{data?.position}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Company</td>
+                                            <td>{data?.company}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Working address</td>
+                                            <td>{data?.workingAddress}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </DetailContent>
+                            <ButtonDiv>
+                                <button onClick={() => navigate('/list')}>Back</button>
+                            </ButtonDiv>
+                        </>
+                    ) : null}
                 </Wrapper>
             </Container>
         </>

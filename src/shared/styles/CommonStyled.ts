@@ -26,7 +26,8 @@ export const ButtonDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    button {
+    button,
+    input {
         width: 80px;
         line-height: 30px;
         background-color: #4285f4;
@@ -36,7 +37,8 @@ export const ButtonDiv = styled.div`
         font-weight: bold;
         margin-right: 20px;
     }
-    button::hover{
+    button::hover,
+    input::hover{
         background-color: #365899;
     }
 `

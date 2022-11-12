@@ -18,6 +18,5 @@ export function Navigator() {
                 <Route path="confirm" element={<ConfirmUser />} />
             </Routes>
         </BrowserRouter>
-
     )
 }

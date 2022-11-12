@@ -6,9 +6,8 @@ export const CreateContent = styled.div`
         width: 100%;
         height: 100%;
         border-collapse: collapse;
-    }
-    table {
         border: 1px solid #ccc;
+        margin-bottom: 20px;
     }
     tr {
         height: 25px;
@@ -22,7 +21,7 @@ export const CreateContent = styled.div`
         padding: 10px 15px;
         text-align: left;
     }
-    input{
+    input[type=text]{
         width: 300px;
         line-height: 30px;
         border: 1px solid #ccc;
