@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: calc(100vh - 130px);
     display: flex;
     justify-content: center;
-    align-items: center;
 `
 export const Wrapper = styled.div`
-    max-height: 500px;
-    width: 800px;
-    margin-top: -500px;
+    min-width: 1000px;
 `
 export const PageTittle = styled.div`
     p {
@@ -39,6 +36,6 @@ export const ButtonDiv = styled.div`
     }
     button::hover,
     input::hover{
-        background-color: #365899;
+        background-color: #0a1d37;
     }
 `

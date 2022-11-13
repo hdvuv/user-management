@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/store/store';
-import { create1 } from '../../../services/userSlice';
+import { create1 } from '../../../services/user/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { CreateContent } from './CreateStyled';
 import { ICreateInput1 } from './CreateFunctions';

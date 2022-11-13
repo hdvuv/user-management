@@ -33,7 +33,6 @@ const ListUser = () => {
     const handleDeleteClick = (event: any) => {
         const param = { id: event.currentTarget.id };
         deleteUser(Number(param.id));
-
     }
 
     useEffect(() => {
@@ -55,7 +54,7 @@ const ListUser = () => {
                         <> Oh no, there was an error </>
                     ) : isLoading ? (
                         <> Loading...</>
-                    ) : data ? (
+                    ) : data?.length ? (
                         <>
                             <ListContent>
                                 <table>
@@ -95,7 +94,13 @@ const ListUser = () => {
                                 <button onClick={handleCreateClick}>Create</button>
                             </ButtonDiv>
                         </>
-                    ) : null}
+                    ) : (
+                        <>
+                            <p>No users to display! Let create some record!!!</p>
+                            <ButtonDiv>
+                                <button onClick={handleCreateClick}>Create</button>
+                            </ButtonDiv>
+                        </>)}
                 </Wrapper>
             </Container>
         </>

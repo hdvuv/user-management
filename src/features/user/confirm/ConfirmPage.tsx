@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTypedSelector } from '../../../redux/store/store';
 import { useCreateUserMutation } from '../../../services/user/userApi';
-import { userSelector } from '../../../services/userSlice';
+import { userSelector } from '../../../services/user/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { ConfirmContent } from './ConfirmStyled';
 

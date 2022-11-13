@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { CreateContent } from './CreateStyled';
 import { useAppDispatch } from '../../../redux/store/store';
-import { create2 } from '../../../services/userSlice';
+import { create2 } from '../../../services/user/userSlice';
 import { ICreateInput2 } from './CreateFunctions';
 
 const CreateUser2 = () => {
