@@ -1,4 +1,16 @@
 {
+  "admins": [
+    {
+      "username": "admin1",
+      "password": "1",
+      "id": 1
+    },
+    {
+      "username": "admin2",
+      "password": "2",
+      "id": 2
+    }
+  ],
   "users": [
     {
       "name": "Phạm Minh Hải",
@@ -61,7 +73,7 @@
       "id": 5
     },
     {
-      "name": "Đỗ Quốc Việt1",
+      "name": "Đỗ Quốc Việt",
       "sex": "Nam111",
       "phone": "09683923851",
       "email": "viet.dq@gmail.com",

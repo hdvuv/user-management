@@ -33,7 +33,6 @@ const ListUser = () => {
     const handleDeleteClick = (event: any) => {
         const param = { id: event.currentTarget.id };
         deleteUser(Number(param.id));
-
     }
 
     useEffect(() => {
