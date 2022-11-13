@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useGetUserQuery, useUpdateUserMutation } from '../../../services/user/userApi';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { EditContent } from './EditStyled';
+import { PATH } from "../../../constants/Common";
 
 
 const EditUser = () => {
@@ -29,7 +30,7 @@ const EditUser = () => {
     const { handleSubmit, } = useForm();
 
     const handleBack = () => {
-        navigate('/list', { replace: true });
+        navigate(PATH.LIST, { replace: true });
     }
 
     useEffect(() => {
@@ -64,7 +65,7 @@ const EditUser = () => {
 
     useEffect(() => {
         if (updateUserResult.isUninitialized) return;
-        navigate('/list', { replace: true });
+        navigate(PATH.LIST, { replace: true });
     }, [updateUserResult.isSuccess]);
 
     if (updateUserResult.isLoading) return (<> Loading...</>);

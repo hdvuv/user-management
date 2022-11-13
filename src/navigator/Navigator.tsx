@@ -8,19 +8,20 @@ import ConfirmUser from '../features/user/confirm/ConfirmPage';
 import EditUser from '../features/user/edit/EditPage';
 import Header from '../shared/components/header/Header';
 import Footer from '../shared/components/footer/Footer';
+import { PATH } from '../constants/Common';
 
 export function Navigator() {
     return (
         <BrowserRouter>
             <Header />
             <Routes>
-                <Route path="/" element={<LoginPage />} />
-                <Route path="list" element={<ListUser />} />
-                <Route path="detail" element={<DetailUser />} />
-                <Route path="create1" element={<CreateUser1 />} />
-                <Route path="create2" element={<CreateUser2 />} />
-                <Route path="confirm" element={<ConfirmUser />} />
-                <Route path="edit" element={<EditUser />} />
+                <Route path={PATH.HOME} element={<LoginPage />} />
+                <Route path={PATH.LIST} element={<ListUser />} />
+                <Route path={PATH.DETAIL} element={<DetailUser />} />
+                <Route path={PATH.CREATE1} element={<CreateUser1 />} />
+                <Route path={PATH.CREATE2} element={<CreateUser2 />} />
+                <Route path={PATH.CONFIRM} element={<ConfirmUser />} />
+                <Route path={PATH.EDIT} element={<EditUser />} />
             </Routes>
             <Footer />
         </BrowserRouter>

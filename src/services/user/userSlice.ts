@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { EMPTY } from "../../constants/Common";
 import { RootState } from "../../redux/store/store";
 
 export interface UserState {
@@ -14,15 +15,15 @@ export interface UserState {
 }
 
 const initialUser: UserState = {
-    name: '',
-    sex: '',
-    phone: '',
-    email: '',
-    address: '',
-    job: '',
-    company: '',
-    position: '',
-    workingAddress: ''
+    name: EMPTY,
+    sex: EMPTY,
+    phone: EMPTY,
+    email: EMPTY,
+    address: EMPTY,
+    job: EMPTY,
+    company: EMPTY,
+    position: EMPTY,
+    workingAddress: EMPTY
 }
 
 export const userSlice = createSlice({

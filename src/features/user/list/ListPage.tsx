@@ -3,6 +3,7 @@ import { ListContent } from './ListStyled';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { useGetUsersQuery, useDeleteUserMutation } from "../../../services/user/userApi";
 import { useEffect } from 'react';
+import { PATH } from '../../../constants/Common';
 
 
 const ListUser = () => {
@@ -11,13 +12,13 @@ const ListUser = () => {
     const [deleteUser, deleteUserResult] = useDeleteUserMutation();
 
     const handleCreateClick = () => {
-        navigate('/create1', { replace: true });
+        navigate(PATH.CREATE1, { replace: true });
     }
 
     const handleDetailClick = (event: any) => {
         const param = { id: event.currentTarget.id };
         navigate({
-            pathname: '/detail',
+            pathname: PATH.DETAIL,
             search: `?${createSearchParams(param)}`,
         });
     }
@@ -25,7 +26,7 @@ const ListUser = () => {
     const handleEditClick = (event: any) => {
         const param = { id: event.currentTarget.id };
         navigate({
-            pathname: '/edit',
+            pathname: PATH.EDIT,
             search: `?${createSearchParams(param)}`,
         });
     }
@@ -37,7 +38,7 @@ const ListUser = () => {
 
     useEffect(() => {
         if (deleteUserResult.isUninitialized) return;
-        navigate('/list', { replace: true });
+        navigate(PATH.LIST, { replace: true });
     }, [deleteUserResult.isSuccess]);
 
     if (deleteUserResult.isLoading) return (<> Loading...</>);

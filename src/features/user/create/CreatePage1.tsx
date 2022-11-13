@@ -5,6 +5,7 @@ import { create1 } from '../../../services/user/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { CreateContent } from './CreateStyled';
 import { ICreateInput1 } from './CreateFunctions';
+import { EMPTY, PATH } from "../../../constants/Common";
 
 
 const CreateUser1 = () => {
@@ -15,22 +16,22 @@ const CreateUser1 = () => {
         handleSubmit
     } = useForm<ICreateInput1>({
         defaultValues: {
-            name: '',
-            phone: '',
-            email: '',
-            address: '',
-            sex: '',
+            name: EMPTY,
+            phone: EMPTY,
+            email: EMPTY,
+            address: EMPTY,
+            sex: EMPTY,
         }
     });
 
 
     const handleBack = () => {
-        navigate('/list', { replace: true });
+        navigate(PATH.LIST, { replace: true });
     }
 
     const submit = (data: ICreateInput1) => {
         dispatch(create1(data));
-        navigate('/create2', { replace: true });
+        navigate(PATH.CREATE2, { replace: true });
     }
 
     return (
