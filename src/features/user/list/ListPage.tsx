@@ -1,11 +1,14 @@
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { ListContent } from './ListStyled';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
-import { useGetUsersQuery } from "../../../services/user/userApi"
+import { useGetUsersQuery, useDeleteUserMutation } from "../../../services/user/userApi";
+import { useEffect } from 'react';
+
 
 const ListUser = () => {
     const navigate = useNavigate();
     const { data, error, isLoading } = useGetUsersQuery();
+    const [deleteUser, deleteUserResult] = useDeleteUserMutation();
 
     const handleCreateClick = () => {
         navigate('/create1', { replace: true });
@@ -26,6 +29,20 @@ const ListUser = () => {
             search: `?${createSearchParams(param)}`,
         });
     }
+
+    const handleDeleteClick = (event: any) => {
+        const param = { id: event.currentTarget.id };
+        deleteUser(Number(param.id));
+
+    }
+
+    useEffect(() => {
+        if (deleteUserResult.isUninitialized) return;
+        navigate('/list', { replace: true });
+    }, [deleteUserResult.isSuccess]);
+
+    if (deleteUserResult.isLoading) return (<> Loading...</>);
+    if (deleteUserResult.isError) return (<> Oh no, there was an error</>);
 
     return (
         <>
@@ -54,7 +71,7 @@ const ListUser = () => {
                                         {data?.map((user, index) => {
                                             return (
                                                 <tr key={index}>
-                                                    <td>{user?.id}</td>
+                                                    <td>{index + 1}</td>
                                                     <td>
                                                         <a id={user?.id} href='' onClick={event => handleDetailClick(event)}>{user?.name}
                                                         </a>
@@ -63,7 +80,9 @@ const ListUser = () => {
                                                     <td>{user?.phone}</td>
                                                     <td>{user?.address}</td>
                                                     <td>
-                                                        <a id={user?.id}  href='' onClick={event => handleEditClick(event)}>Edit
+                                                        <a id={user?.id} href='' onClick={event => handleEditClick(event)}>Edit
+                                                        </a>
+                                                        <a id={user?.id} href='' onClick={event => handleDeleteClick(event)}>Delete
                                                         </a>
                                                     </td>
                                                 </tr>
