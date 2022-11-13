@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const LoginForm = styled.form`
     width: 400px;
     height: 300px;
+    margin-top: 100px;
     box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .2);
 `
 export const LoginContent = styled.div`

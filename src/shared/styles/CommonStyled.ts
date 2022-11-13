@@ -5,7 +5,6 @@ export const Container = styled.div`
     min-height: calc(100vh - 130px);
     display: flex;
     justify-content: center;
-    align-items: center;
 `
 export const Wrapper = styled.div`
     min-width: 1000px;
@@ -37,6 +36,6 @@ export const ButtonDiv = styled.div`
     }
     button::hover,
     input::hover{
-        background-color: #365899;
+        background-color: #0a1d37;
     }
 `
