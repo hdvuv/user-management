@@ -11,21 +11,21 @@ const CreateUser2 = () => {
     const dispatch = useAppDispatch();
     const {
         register,
-        handleSubmit } = useForm<ICreateInput2>({
-            defaultValues: {
-                job: '',
-                position: '',
-                company: '',
-                workingAddress: '',
-            }
-        });
+        handleSubmit
+    } = useForm<ICreateInput2>({
+        defaultValues: {
+            job: '',
+            position: '',
+            company: '',
+            workingAddress: '',
+        }
+    });
 
     const handleBack = () => {
         navigate('/create1', { replace: true });
     }
 
     const submit = (data: ICreateInput2) => {
-        console.log('data 2 = ' + data);
         dispatch(create2(data));
         navigate('/confirm', { replace: true });
     }

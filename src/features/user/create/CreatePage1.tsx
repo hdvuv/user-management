@@ -12,15 +12,16 @@ const CreateUser1 = () => {
     const dispatch = useAppDispatch();
     const {
         register,
-        handleSubmit } = useForm<ICreateInput1>({
-            defaultValues: {
-                name: '',
-                phone: '',
-                email: '',
-                address: '',
-                sex: '',
-            }
-        });
+        handleSubmit
+    } = useForm<ICreateInput1>({
+        defaultValues: {
+            name: '',
+            phone: '',
+            email: '',
+            address: '',
+            sex: '',
+        }
+    });
 
 
     const handleBack = () => {
@@ -28,7 +29,6 @@ const CreateUser1 = () => {
     }
 
     const submit = (data: ICreateInput1) => {
-        console.log('data 1 = ' + data);
         dispatch(create1(data));
         navigate('/create2', { replace: true });
     }

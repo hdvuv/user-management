@@ -19,6 +19,14 @@ const ListUser = () => {
         });
     }
 
+    const handleEditClick = (event: any) => {
+        const param = { id: event.currentTarget.id };
+        navigate({
+            pathname: '/edit',
+            search: `?${createSearchParams(param)}`,
+        });
+    }
+
     return (
         <>
             <Container>
@@ -41,6 +49,7 @@ const ListUser = () => {
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Address</th>
+                                            <th>Actions</th>
                                         </tr>
                                         {data?.map((user, index) => {
                                             return (
@@ -53,6 +62,10 @@ const ListUser = () => {
                                                     <td>{user?.email}</td>
                                                     <td>{user?.phone}</td>
                                                     <td>{user?.address}</td>
+                                                    <td>
+                                                        <a id={user?.id}  href='' onClick={event => handleEditClick(event)}>Edit
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             );
                                         })}

@@ -1,16 +1,16 @@
 {
   "users": [
     {
-      "id": 1,
       "name": "Phạm Minh Hải",
       "sex": "Nam",
       "phone": "0123456789",
       "email": "hai.pm@gmail.com",
-      "address": "Ha Noi",
+      "address": "Hà Nội",
       "job": "developer",
       "company": "Luvina SJC",
       "position": "staff",
-      "workingAddress": "106 Hoàng Quốc Việt"
+      "workingAddress": "106 Hoàng Quốc Việt",
+      "id": 1
     },
     {
       "name": "Nguyễn Viết Hoàng",
@@ -61,15 +61,15 @@
       "id": 5
     },
     {
-      "name": "Đỗ Quốc Việt",
-      "sex": "Nam",
-      "phone": "0968392385",
+      "name": "Đỗ Quốc Việt1",
+      "sex": "Nam111",
+      "phone": "09683923851",
       "email": "viet.dq@gmail.com",
       "address": "Hải Phòng",
-      "job": "secretary",
-      "company": "TMA solutions",
-      "position": "staff",
-      "workingAddress": "111 Nguyễn Đình Chính",
+      "job": "secretary1",
+      "company": "TMA solutions1",
+      "position": "staff1",
+      "workingAddress": "111 Nguyễn Đình Chính1",
       "id": 6
     },
     {
@@ -89,7 +89,7 @@
       "sex": "Nam",
       "phone": "0968238520",
       "email": "thanh.mx@gmail.com",
-      "address": "lạng Sơn",
+      "address": "Lạng Sơn",
       "job": "manager",
       "company": "CMC Corporation",
       "position": "staff",
@@ -125,11 +125,11 @@
       "sex": "Nam",
       "phone": "0346764044",
       "email": "vu.vdh@gmail.com",
-      "address": "43 Cổ Nhuế",
+      "address": "Hà Tĩnh",
       "job": "developer",
       "company": "Luvina SJC",
       "position": "staff",
-      "workingAddress": "106 Hoàng Quốc Việt",
+      "workingAddress": "43 Cổ Nhuế",
       "id": 11
     },
     {
@@ -145,27 +145,27 @@
       "id": 12
     },
     {
-      "name": "a",
-      "sex": "v",
-      "phone": "a",
-      "email": "a",
-      "address": "v",
-      "job": "a",
-      "company": "a",
-      "position": "a",
-      "workingAddress": "a",
+      "name": "Nguyễn Văn A",
+      "sex": "Nam",
+      "phone": "0123456789",
+      "email": "a.nv@gmail.com",
+      "address": "Cao Bằng",
+      "job": "developer",
+      "company": "NEXLAB Technology",
+      "position": "staff",
+      "workingAddress": "35 Bà Triệu",
       "id": 13
     },
     {
-      "name": "z",
-      "sex": "",
-      "phone": "z",
-      "email": "x",
-      "address": "c",
-      "job": "c",
-      "company": "c",
-      "position": "c",
-      "workingAddress": "c",
+      "name": "Nguyễn Văn K",
+      "sex": "Nam",
+      "phone": "0111111111",
+      "email": "binz@gmail.com",
+      "address": "Nghệ An",
+      "job": "cheff",
+      "company": "Scandinavian Software Park",
+      "position": "Chef",
+      "workingAddress": "133 Hồng Bàng",
       "id": 14
     },
     {
