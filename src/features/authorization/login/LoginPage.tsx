@@ -39,7 +39,7 @@ const LoginPage = () => {
       <Container>
         <LoginForm method='post' onSubmit={handleSubmit(onSubmit)}>
           <PageTittle>
-            <p>Login system</p>
+            <p>Login</p>
           </PageTittle>
           <LoginContent>
             <label htmlFor='username'>Username</label>

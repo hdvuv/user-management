@@ -1,20 +1,21 @@
 import styled from 'styled-components';
 
 export const LoginForm = styled.form`
-    width: 300px;
+    width: 400px;
     height: 300px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .2);
 `
 export const LoginContent = styled.div`
-    margin: 20px 25px;
+    margin: 20px 60px;
     label {
         display: block;
+        margin-bottom: 8px;
     }
     input {
-        width: 240px;
+        width: 280px;
         line-height: 30px;
         border: 1px solid #ccc;
-        margin-bottom: 10px;
+        margin-bottom: 16px;
         padding-left: 10px;
     }
 `
