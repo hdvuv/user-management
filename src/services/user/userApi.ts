@@ -23,7 +23,10 @@ export const userApi = createApi({
     tagTypes: ['User'],
     endpoints: (builder) => ({
         getUser: builder.query<User, string>({
-            query: (id: string) => ({ url: `/users/${id}`, method: 'GET' }),
+            query: (id: string) => ({
+                url: `/users/${id}`,
+                method: 'GET'
+            }),
             providesTags: (result, error, id) => [{ type: 'User', id }],
         }),
         getUsers: builder.query<UsersResponse, void>({
@@ -45,13 +48,22 @@ export const userApi = createApi({
             invalidatesTags: [{ type: 'User', id: 'LIST' }],
         }),
         updateUser: builder.mutation<void, Pick<User, 'id'> & Partial<User>>({
-          query: ({ id, ...patch }) => ({
-            url: `users/${id}`,
-            method: 'PUT',
-            body: patch,
-          }),
-          invalidatesTags: (result, error, { id }) => [{ type: 'User', id }],
+            query: ({ id, ...patch }) => ({
+                url: `users/${id}`,
+                method: 'PUT',
+                body: patch,
+            }),
+            invalidatesTags: (result, error, { id }) => [{ type: 'User', id }],
         }),
+        deleteUser: builder.mutation<{ success: boolean; id: number }, number>({
+            query(id) {
+                return {
+                    url: `users/${id}`,
+                    method: 'DELETE',
+                }
+            },
+            invalidatesTags: (result, error, id) => [{ type: 'User', id }],
+        })
     }),
 })
 
@@ -59,5 +71,6 @@ export const {
     useGetUserQuery,
     useGetUsersQuery,
     useCreateUserMutation,
-    useUpdateUserMutation
+    useUpdateUserMutation,
+    useDeleteUserMutation
 } = userApi;

@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from '../features/authorization/login/LoginPage';
-import ConfirmUser from '../features/user/confirm/ConfirmPage';
+import ListUser from '../features/user/list/ListPage';
+import DetailUser from '../features/user/detail/DetailPage';
 import CreateUser1 from '../features/user/create/CreatePage1';
 import CreateUser2 from '../features/user/create/CreatePage2';
-import Edit from '../features/user/edit/EditPage';
-import DetailUser from '../features/user/detail/DetailPage';
-import ListUser from '../features/user/list/ListPage';
+import ConfirmUser from '../features/user/confirm/ConfirmPage';
+import EditUser from '../features/user/edit/EditPage';
 
 export function Navigator() {
     return (
@@ -16,8 +16,8 @@ export function Navigator() {
                 <Route path="detail" element={<DetailUser />} />
                 <Route path="create1" element={<CreateUser1 />} />
                 <Route path="create2" element={<CreateUser2 />} />
-                <Route path="edit" element={<Edit />} />
                 <Route path="confirm" element={<ConfirmUser />} />
+                <Route path="edit" element={<EditUser />} />
             </Routes>
         </BrowserRouter>
     )

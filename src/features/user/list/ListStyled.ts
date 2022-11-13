@@ -10,8 +10,16 @@ export const ListContent = styled.div`
     table, th, td {
         border: 1px solid #ccc;
     }
+    
+    tr:first-child{
+        color: #fff;
+        background-color: #4285f4;
+    }
     tr th:first-child{
-        width: 10%;
+        width: 5%;
+    }
+    tr:not(:first-child):hover {
+        background-color: #dae1eb;
     }
     th {
         font-size: 18px;
@@ -25,5 +33,6 @@ export const ListContent = styled.div`
     }
     a{
         color: #1978D8;
+        margin-right: 20px;
     }
 `
