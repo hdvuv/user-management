@@ -44,11 +44,20 @@ export const userApi = createApi({
             }),
             invalidatesTags: [{ type: 'User', id: 'LIST' }],
         }),
+        updateUser: builder.mutation<void, Pick<User, 'id'> & Partial<User>>({
+          query: ({ id, ...patch }) => ({
+            url: `users/${id}`,
+            method: 'PUT',
+            body: patch,
+          }),
+          invalidatesTags: (result, error, { id }) => [{ type: 'User', id }],
+        }),
     }),
 })
 
 export const {
     useGetUserQuery,
     useGetUsersQuery,
-    useCreateUserMutation
+    useCreateUserMutation,
+    useUpdateUserMutation
 } = userApi;

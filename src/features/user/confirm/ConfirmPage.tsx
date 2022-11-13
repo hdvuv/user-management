@@ -21,7 +21,6 @@ const ConfirmPage = () => {
     }
 
     const handleNext = async () => {
-        console.log("user = " + user);
         createUser({
             name: user.name,
             sex: user.sex,
