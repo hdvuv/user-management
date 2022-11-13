@@ -2,8 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { userApi } from '../../services/user/userApi';
-import { adminApi } from '../../services/authorization/adminApi';
-import UserSlice from '../../services/userSlice';
+import { adminApi } from '../../services/admin/adminApi';
+import UserSlice from '../../services/user/userSlice';
 
 
 export const store = configureStore({

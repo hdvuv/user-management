@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LoginForm, LoginContent } from './LoginStyled';
 import { Container, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
-import { Admin, useGetAdminsQuery } from "../../../services/authorization/adminApi";
+import { Admin, useGetAdminsQuery } from "../../../services/admin/adminApi";
 import { useEffect, useState } from "react";
 
 const LoginPage = () => {
@@ -19,12 +19,14 @@ const LoginPage = () => {
 
   const onSubmit = (data: any) => {
     if (checkExistAdmin(admins, data)) {
+      sessionStorage.setItem('access-token', 'LOGGED')
       navigate('/list', { replace: true });
     } else {
       alert('Invalid username and password!')
     }
   };
 
+  // authenticate
   const checkExistAdmin = (admins: Admin[], data: { username: any; password: any; }) => {
     for (const admin of admins) {
       if (data?.username === admin.username && data?.password === admin.password) {

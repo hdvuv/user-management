@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginPage from '../features/authorization/login/LoginPage';
+import LoginPage from '../features/authentication/login/LoginPage';
 import ListUser from '../features/user/list/ListPage';
 import DetailUser from '../features/user/detail/DetailPage';
 import CreateUser1 from '../features/user/create/CreatePage1';
