@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { DetailContent } from './DetailStyled';
 import { useGetUserQuery } from "../../../services/user/userApi"
+import { PATH } from '../../../constants/Common';
 
 const DetailUser = () => {
     const navigate = useNavigate();
@@ -65,7 +66,7 @@ const DetailUser = () => {
                                 </table>
                             </DetailContent>
                             <ButtonDiv>
-                                <button onClick={() => navigate('/list')}>Back</button>
+                                <button onClick={() => navigate(PATH.LIST)}>Back</button>
                             </ButtonDiv>
                         </>
                     ) : null}

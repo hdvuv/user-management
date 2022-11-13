@@ -4,6 +4,7 @@ import { LoginForm, LoginContent } from './LoginStyled';
 import { Container, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { Admin, useGetAdminsQuery } from "../../../services/admin/adminApi";
 import { useEffect, useState } from "react";
+import { ERROR_MSG, PATH } from "../../../constants/Common";
 
 const LoginPage = () => {
   const navigate = useNavigate()
@@ -20,16 +21,17 @@ const LoginPage = () => {
   const onSubmit = (data: any) => {
     if (checkExistAdmin(admins, data)) {
       sessionStorage.setItem('access-token', 'LOGGED')
-      navigate('/list', { replace: true });
+      navigate(PATH.LIST, { replace: true });
     } else {
-      alert('Invalid username and password!')
+      alert(ERROR_MSG.INVALID_LOGIN)
     }
   };
 
   // authenticate
   const checkExistAdmin = (admins: Admin[], data: { username: any; password: any; }) => {
     for (const admin of admins) {
-      if (data?.username === admin.username && data?.password === admin.password) {
+      if (data?.username === admin.username &&
+        data?.password === admin.password) {
         return true;
       }
     }

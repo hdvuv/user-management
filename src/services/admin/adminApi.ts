@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { PATH } from '../../constants/Common';
 
 // Admin
 export interface Admin {
@@ -12,7 +13,7 @@ type AdminsResponse = Admin[];
 
 export const adminApi = createApi({
     reducerPath: 'admin api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: PATH.BASE_QUERY }),
     tagTypes: ['Admin'],
     endpoints: (builder) => ({
         getAdmins: builder.query<AdminsResponse, void>({

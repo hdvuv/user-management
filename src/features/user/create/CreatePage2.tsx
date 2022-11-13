@@ -5,6 +5,7 @@ import { CreateContent } from './CreateStyled';
 import { useAppDispatch } from '../../../redux/store/store';
 import { create2 } from '../../../services/user/userSlice';
 import { ICreateInput2 } from './CreateFunctions';
+import { EMPTY, PATH } from '../../../constants/Common';
 
 const CreateUser2 = () => {
     const navigate = useNavigate();
@@ -14,20 +15,20 @@ const CreateUser2 = () => {
         handleSubmit
     } = useForm<ICreateInput2>({
         defaultValues: {
-            job: '',
-            position: '',
-            company: '',
-            workingAddress: '',
+            job: EMPTY,
+            position: EMPTY,
+            company: EMPTY,
+            workingAddress: EMPTY,
         }
     });
 
     const handleBack = () => {
-        navigate('/create1', { replace: true });
+        navigate(PATH.CREATE1, { replace: true });
     }
 
     const submit = (data: ICreateInput2) => {
         dispatch(create2(data));
-        navigate('/confirm', { replace: true });
+        navigate(PATH.CONFIRM, { replace: true });
     }
 
     return (

@@ -1,6 +1,7 @@
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PATH } from '../../../constants/Common';
 import { useTypedSelector } from '../../../redux/store/store';
 import { useCreateUserMutation } from '../../../services/user/userApi';
 import { userSelector } from '../../../services/user/userSlice';
@@ -13,11 +14,11 @@ const ConfirmPage = () => {
     const [createUser, createUserResult] = useCreateUserMutation();
 
     const handleBack1 = () => {
-        navigate('/create1', { replace: true });
+        navigate(PATH.CREATE1, { replace: true });
     }
 
     const handleBack2 = () => {
-        navigate('/create2', { replace: true });
+        navigate(PATH.CREATE2, { replace: true });
     }
 
     const handleNext = async () => {
@@ -36,7 +37,7 @@ const ConfirmPage = () => {
 
     useEffect(() => {
         if (createUserResult.isUninitialized) return;
-        navigate('/list', { replace: true });
+        navigate(PATH.LIST, { replace: true });
     }, [createUserResult.isSuccess]);
 
     if (createUserResult.isLoading) return (<> Loading...</>);
