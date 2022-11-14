@@ -4,14 +4,13 @@ import { useForm } from "react-hook-form";
 import { useGetUserQuery, useUpdateUserMutation } from '../../../services/user/userApi';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { EditContent } from './EditStyled';
-import { PATH } from "../../../constants/Common";
-
+import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PARAMS, PATH } from "../../../constants/Common";
 
 const EditUser = () => {
     const navigate = useNavigate();
     const search = useLocation().search;
-    const currentUserId = new URLSearchParams(search).get('id');
-    const { data, error, isLoading } = useGetUserQuery(currentUserId ? currentUserId : "1");
+    const currentUserId = new URLSearchParams(search).get(PARAMS.ID);
+    const { data, error, isLoading } = useGetUserQuery(currentUserId ? currentUserId : PARAMS.ID_RANDOM);
     const [updateUser, updateUserResult] = useUpdateUserMutation();
 
     const [selectedUser, setSelectedUser] = useState({
@@ -32,6 +31,12 @@ const EditUser = () => {
     const handleBack = () => {
         navigate(PATH.LIST, { replace: true });
     }
+
+    useEffect(() => {
+        if (sessionStorage.getItem(ACCESS_TOKEN_KEY) !== LOGGED_STATUS) {
+            navigate(PATH.HOME, { replace: true });
+        };
+    }, []);
 
     useEffect(() => {
         setSelectedUser({

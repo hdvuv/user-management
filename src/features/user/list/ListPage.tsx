@@ -1,10 +1,9 @@
+import { useEffect } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { ListContent } from './ListStyled';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { useGetUsersQuery, useDeleteUserMutation } from "../../../services/user/userApi";
-import { useEffect } from 'react';
-import { PATH } from '../../../constants/Common';
-
+import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PATH } from '../../../constants/Common';
 
 const ListUser = () => {
     const navigate = useNavigate();
@@ -40,6 +39,12 @@ const ListUser = () => {
         if (deleteUserResult.isUninitialized) return;
         navigate(PATH.LIST, { replace: true });
     }, [deleteUserResult.isSuccess]);
+
+    useEffect(() => {
+        if (sessionStorage.getItem(ACCESS_TOKEN_KEY) !== LOGGED_STATUS) {
+            navigate(PATH.HOME, { replace: true });
+        };
+    }, []);
 
     if (deleteUserResult.isLoading) return (<> Loading...</>);
     if (deleteUserResult.isError) return (<> Oh no, there was an error</>);
