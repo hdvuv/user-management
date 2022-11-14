@@ -1,10 +1,10 @@
-import React from 'react';
 import { HeaderDiv } from '../../../shared/components/header/HeaderStyled';
+import { strings } from '../../../localization/Localization';
 
 const Header = () => {
   return (
     <HeaderDiv>
-      <p>Manage users system</p>
+      <p>{strings.common.header_title}</p>
     </HeaderDiv>
   );
 };

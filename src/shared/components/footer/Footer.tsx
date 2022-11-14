@@ -1,10 +1,10 @@
-import React from 'react';
 import { FooterDiv } from '../../../shared/components/footer/FooterStyled';
+import { strings } from '../../../localization/Localization';
 
 const Footer = () => {
     return (
         <FooterDiv>
-            <p>Copyright © 2022 - Developed by VuVDH </p>
+            <p>{strings.common.footer_title}</p>
         </FooterDiv>
     );
 };

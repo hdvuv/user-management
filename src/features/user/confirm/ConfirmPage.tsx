@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTypedSelector } from '../../../redux/store/store';
@@ -7,6 +6,7 @@ import { userSelector } from '../../../services/user/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { ConfirmContent } from './ConfirmStyled';
 import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PATH } from '../../../constants/Common';
+import { strings } from '../../../localization/Localization';
 
 const ConfirmPage = () => {
     const navigate = useNavigate();
@@ -46,72 +46,72 @@ const ConfirmPage = () => {
         navigate(PATH.LIST, { replace: true });
     }, [createUserResult.isSuccess]);
 
-    if (createUserResult.isLoading) return (<> Loading...</>);
-    if (createUserResult.isError) return (<> Oh no, there was an error</>);
+    if (createUserResult.isLoading) return (<> {strings.common.loading_msg}</>);
+    if (createUserResult.isError) return (<> {strings.common.error_loading_msg}</>);
 
     return (
         <>
             <Container>
                 <Wrapper>
                     <PageTittle>
-                        <p>Confirm user page</p>
+                        <p>{strings.confirm.confirm_title}</p>
                     </PageTittle>
                     <ConfirmContent>
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>Name</td>
+                                    <td>{strings.confirm.name}</td>
                                     <td>{user.name}</td>
                                 </tr>
                                 <tr>
-                                    <td>Sex</td>
+                                    <td>{strings.confirm.sex}</td>
                                     <td>{user.sex}</td>
                                 </tr>
                                 <tr>
-                                    <td>Phone</td>
+                                    <td>{strings.confirm.phone}</td>
                                     <td>{user.phone}</td>
                                 </tr>
                                 <tr>
-                                    <td>Email</td>
+                                    <td>{strings.confirm.email}</td>
                                     <td>{user.email}</td>
                                 </tr>
                                 <tr>
-                                    <td>Address</td>
+                                    <td>{strings.confirm.address}</td>
                                     <td>{user.address}</td>
                                 </tr>
                             </tbody>
                         </table>
                         <ButtonDiv>
-                            <button onClick={handleBack1} >Back</button>
+                            <button onClick={handleBack1} >{strings.confirm.back_btn}</button>
                         </ButtonDiv>
                     </ConfirmContent>
                     <ConfirmContent>
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>Job</td>
+                                    <td>{strings.confirm.job}</td>
                                     <td>{user.job}</td>
                                 </tr>
                                 <tr>
-                                    <td>Position</td>
+                                    <td>{strings.confirm.position}</td>
                                     <td>{user.position}</td>
                                 </tr>
                                 <tr>
-                                    <td>Company</td>
+                                    <td>{strings.confirm.company}</td>
                                     <td>{user.company}</td>
                                 </tr>
                                 <tr>
-                                    <td>Working address</td>
+                                    <td>{strings.confirm.working_address}</td>
                                     <td>{user.workingAddress}</td>
                                 </tr>
                             </tbody>
                         </table>
                         <ButtonDiv>
-                            <button onClick={handleBack2}>Back</button>
+                            <button onClick={handleBack2}>{strings.confirm.back_btn}</button>
                         </ButtonDiv>
                     </ConfirmContent>
                     <ButtonDiv>
-                        <button onClick={handleNext}>Next</button>
+                        <button onClick={handleNext}>{strings.confirm.next_btn}</button>
                     </ButtonDiv>
                 </Wrapper>
             </Container>

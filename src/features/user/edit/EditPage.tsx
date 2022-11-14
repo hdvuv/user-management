@@ -5,6 +5,7 @@ import { useGetUserQuery, useUpdateUserMutation } from '../../../services/user/u
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { EditContent } from './EditStyled';
 import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PARAMS, PATH } from "../../../constants/Common";
+import { strings } from '../../../localization/Localization';
 
 const EditUser = () => {
     const navigate = useNavigate();
@@ -73,8 +74,8 @@ const EditUser = () => {
         navigate(PATH.LIST, { replace: true });
     }, [updateUserResult.isSuccess]);
 
-    if (updateUserResult.isLoading) return (<> Loading...</>);
-    if (updateUserResult.isError) return (<> Oh no, there was an error</>);
+    if (updateUserResult.isLoading) return (<> {strings.common.loading_msg}</>);
+    if (updateUserResult.isError) return (<> {strings.common.error_loading_msg}</>);
 
     const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
         setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value })
@@ -85,12 +86,12 @@ const EditUser = () => {
             <Container>
                 <Wrapper>
                     <PageTittle>
-                        <p>Edit user page</p>
+                        <p>{strings.edit.edit_title}</p>
                     </PageTittle>
                     {error ? (
-                        <> Oh no, there was an error </>
+                        <> {strings.common.error_loading_msg} </>
                     ) : isLoading ? (
-                        <> Loading...</>
+                        <> {strings.common.loading_msg}</>
                     ) : data ? (
                         <>
                             <EditContent>
@@ -98,7 +99,7 @@ const EditUser = () => {
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td>Name</td>
+                                                <td>{strings.detail.name}</td>
                                                 <td>
                                                     <input
                                                         type='text'
@@ -110,7 +111,7 @@ const EditUser = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Sex</td>
+                                                <td>{strings.detail.sex}</td>
                                                 <td>
                                                     <input
                                                         type='text'
@@ -122,7 +123,7 @@ const EditUser = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Phone</td>
+                                                <td>{strings.detail.phone}</td>
                                                 <td>
                                                     <input
                                                         type='text'
@@ -134,7 +135,7 @@ const EditUser = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Email</td>
+                                                <td>{strings.detail.email}</td>
                                                 <td>
                                                     <input
                                                         type='text'
@@ -146,7 +147,7 @@ const EditUser = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Address</td>
+                                                <td>{strings.detail.address}</td>
                                                 <td>
                                                     <input
                                                         type='text'
@@ -158,7 +159,7 @@ const EditUser = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Job</td>
+                                                <td>{strings.detail.job}</td>
                                                 <td>
                                                     <input
                                                         type='text'
@@ -170,7 +171,7 @@ const EditUser = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Position</td>
+                                                <td>{strings.detail.position}</td>
                                                 <td>
                                                     <input
                                                         type='text'
@@ -182,7 +183,7 @@ const EditUser = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Company</td>
+                                                <td>{strings.detail.company}</td>
                                                 <td>
                                                     <input
                                                         type='text'
@@ -194,7 +195,7 @@ const EditUser = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Working address</td>
+                                                <td>{strings.detail.working_address}</td>
                                                 <td>
                                                     <input
                                                         type='text'
@@ -208,8 +209,8 @@ const EditUser = () => {
                                         </tbody>
                                     </table>
                                     <ButtonDiv>
-                                        <button onClick={handleBack}>Back</button>
-                                        <input type="submit" value='Update' />
+                                        <button onClick={handleBack}>{strings.edit.back_btn}</button>
+                                        <input type="submit" value={strings.edit.update_btn} />
                                     </ButtonDiv>
                                 </form>
                             </EditContent>

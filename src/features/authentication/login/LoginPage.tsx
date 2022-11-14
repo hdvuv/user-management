@@ -5,6 +5,7 @@ import { Container, PageTittle, ButtonDiv } from '../../../shared/styles/CommonS
 import { Admin, useGetAdminsQuery } from "../../../services/admin/adminApi";
 import { useEffect, useState } from "react";
 import { ACCESS_TOKEN_KEY, ERROR_MSG, LOGGED_STATUS, PATH } from "../../../constants/Common";
+import { strings } from '../../../localization/Localization';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -50,16 +51,16 @@ const LoginPage = () => {
       <Container isDisplay={true}>
         <LoginForm method='post' onSubmit={handleSubmit(onSubmit)}>
           <PageTittle>
-            <p>Login</p>
+            <p>{strings.login.login_title}</p>
           </PageTittle>
           <LoginContent>
-            <label htmlFor='username'>Username</label>
+            <label htmlFor='username'>{strings.login.username}</label>
             <input
               type='text'
               {...register("username")}
               required
             />
-            <label htmlFor='password'>Password</label>
+            <label htmlFor='password'>{strings.login.password}</label>
             <input
               type='password'
               {...register("password")}
@@ -67,7 +68,7 @@ const LoginPage = () => {
             />
           </LoginContent>
           <ButtonDiv>
-            <button type="submit">Login</button>
+            <button type="submit">{strings.login.login_btn}</button>
           </ButtonDiv>
         </LoginForm>
       </Container>

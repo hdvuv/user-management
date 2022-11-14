@@ -7,6 +7,7 @@ import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/style
 import { CreateContent } from './CreateStyled';
 import { ICreateInput1 } from './CreateFunctions';
 import { ACCESS_TOKEN_KEY, EMPTY, LOGGED_STATUS, PATH } from "../../../constants/Common";
+import { strings } from '../../../localization/Localization';
 
 const CreateUser1 = () => {
     const navigate = useNavigate();
@@ -44,7 +45,7 @@ const CreateUser1 = () => {
             <Container>
                 <Wrapper>
                     <PageTittle>
-                        <p>Create user (1) page</p>
+                        <p>{strings.create.create1_title}</p>
                     </PageTittle>
                     <CreateContent>
                         <form
@@ -53,7 +54,7 @@ const CreateUser1 = () => {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <th>Name</th>
+                                        <th>{strings.create.name}</th>
                                         <td>
                                             <input
                                                 type='text'
@@ -62,7 +63,7 @@ const CreateUser1 = () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Phone</th>
+                                        <th>{strings.create.phone}</th>
                                         <td>
                                             <input
                                                 type='text'
@@ -71,7 +72,7 @@ const CreateUser1 = () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Email</th>
+                                        <th>{strings.create.email}</th>
                                         <td>
                                             <input
                                                 type='text'
@@ -80,7 +81,7 @@ const CreateUser1 = () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Address</th>
+                                        <th>{strings.create.address}</th>
                                         <td>
                                             <input
                                                 type='text'
@@ -89,7 +90,7 @@ const CreateUser1 = () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Sex</th>
+                                        <th>{strings.create.sex}</th>
                                         <td>
                                             <input
                                                 type='text'
@@ -100,8 +101,8 @@ const CreateUser1 = () => {
                                 </tbody>
                             </table>
                             <ButtonDiv>
-                                <button onClick={handleBack}>Back</button>
-                                <input type="submit" value='Next' />
+                                <button onClick={handleBack}>{strings.create.back_btn}</button>
+                                <input type="submit" value={strings.create.next_btn} />
                             </ButtonDiv>
                         </form>
                     </CreateContent>

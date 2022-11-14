@@ -4,6 +4,7 @@ import { DetailContent } from './DetailStyled';
 import { useGetUserQuery } from "../../../services/user/userApi";
 import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PARAMS, PATH } from '../../../constants/Common';
 import { useEffect } from 'react';
+import { strings } from '../../../localization/Localization';
 
 const DetailUser = () => {
     const navigate = useNavigate();
@@ -22,58 +23,58 @@ const DetailUser = () => {
             <Container>
                 <Wrapper>
                     <PageTittle>
-                        <p >Detail user page</p>
+                        <p>{strings.detail.detail_title}</p>
                     </PageTittle>
                     {error ? (
-                        <> Oh no, there was an error </>
+                        <> {strings.common.error_loading_msg} </>
                     ) : isLoading ? (
-                        <> Loading...</>
+                        <> {strings.common.loading_msg}</>
                     ) : data ? (
                         <>
                             <DetailContent>
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td>Name</td>
+                                            <td>{strings.detail.name}</td>
                                             <td>{data?.name}</td>
                                         </tr>
                                         <tr>
-                                            <td>Sex</td>
+                                            <td>{strings.detail.sex}</td>
                                             <td>{data?.sex}</td>
                                         </tr>
                                         <tr>
-                                            <td>Phone</td>
+                                            <td>{strings.detail.phone}</td>
                                             <td>{data?.phone}</td>
                                         </tr>
                                         <tr>
-                                            <td>Email</td>
+                                            <td>{strings.detail.email}</td>
                                             <td>{data?.email}</td>
                                         </tr>
                                         <tr>
-                                            <td>Address</td>
+                                            <td>{strings.detail.address}</td>
                                             <td>{data?.address}</td>
                                         </tr>
                                         <tr>
-                                            <td>Job</td>
+                                            <td>{strings.detail.job}</td>
                                             <td>{data?.job}</td>
                                         </tr>
                                         <tr>
-                                            <td>Position</td>
+                                            <td>{strings.detail.position}</td>
                                             <td>{data?.position}</td>
                                         </tr>
                                         <tr>
-                                            <td>Company</td>
+                                            <td>{strings.detail.company}</td>
                                             <td>{data?.company}</td>
                                         </tr>
                                         <tr>
-                                            <td>Working address</td>
+                                            <td>{strings.detail.working_address}</td>
                                             <td>{data?.workingAddress}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </DetailContent>
                             <ButtonDiv>
-                                <button onClick={() => navigate(PATH.LIST)}>Back</button>
+                                <button onClick={() => navigate(PATH.LIST)}>{strings.detail.back_btn}</button>
                             </ButtonDiv>
                         </>
                     ) : null}

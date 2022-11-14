@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../../redux/store/store';
 import { create2 } from '../../../services/user/userSlice';
 import { ICreateInput2 } from './CreateFunctions';
 import { ACCESS_TOKEN_KEY, EMPTY, LOGGED_STATUS, PATH } from '../../../constants/Common';
+import { strings } from '../../../localization/Localization';
 
 const CreateUser2 = () => {
     const navigate = useNavigate();
@@ -43,7 +44,7 @@ const CreateUser2 = () => {
             <Container>
                 <Wrapper>
                     <PageTittle>
-                        <p>Create user (2) page</p>
+                        <p>{strings.create.create2_title}</p>
                     </PageTittle>
                     <CreateContent>
                         <form
@@ -52,7 +53,7 @@ const CreateUser2 = () => {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <th>Job</th>
+                                        <th>{strings.create.job}</th>
                                         <td>
                                             <input
                                                 type='text'
@@ -61,7 +62,7 @@ const CreateUser2 = () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Position</th>
+                                        <th>{strings.create.position}</th>
                                         <td>
                                             <input
                                                 type='text'
@@ -70,7 +71,7 @@ const CreateUser2 = () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Company</th>
+                                        <th>{strings.create.company}</th>
                                         <td>
                                             <input
                                                 type='text'
@@ -79,7 +80,7 @@ const CreateUser2 = () => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Working address</th>
+                                        <th>{strings.create.working_address}</th>
                                         <td>
                                             <input
                                                 type='text'
@@ -90,8 +91,8 @@ const CreateUser2 = () => {
                                 </tbody>
                             </table>
                             <ButtonDiv>
-                                <button onClick={handleBack}>Back</button>
-                                <input type="submit" value='Next' />
+                                <button onClick={handleBack}>{strings.create.back_btn}</button>
+                                <input type="submit" value={strings.create.next_btn} />
                             </ButtonDiv>
                         </form>
                     </CreateContent>

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../constants/Common';
 import { Container } from '../../shared/styles/CommonStyled';
 import { ErrorContent } from './ErrorStyled';
+import { strings } from '../../localization/Localization';
 
 const ErrorPage = () => {
     const navigate = useNavigate();
@@ -15,10 +16,10 @@ const ErrorPage = () => {
             <Container>
                 <ErrorContent>
                     <div>
-                        <p>Oops!</p>
-                        <p>An error has occurred!</p>
-                        <p>Let's go back to the login page!</p>
-                        <button onClick={handleGoHome}>Go home</button>
+                        <p>{strings.error.feeling}</p>
+                        <p>{strings.error.notify}</p>
+                        <p>{strings.error.action}</p>
+                        <button onClick={handleGoHome}>{strings.error.go_home_btn}</button>
                     </div>
                 </ErrorContent>
             </Container>
