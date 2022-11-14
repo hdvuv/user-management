@@ -1,12 +1,12 @@
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PATH } from '../../../constants/Common';
 import { useTypedSelector } from '../../../redux/store/store';
 import { useCreateUserMutation } from '../../../services/user/userApi';
 import { userSelector } from '../../../services/user/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { ConfirmContent } from './ConfirmStyled';
+import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PATH } from '../../../constants/Common';
 
 const ConfirmPage = () => {
     const navigate = useNavigate();
@@ -34,6 +34,12 @@ const ConfirmPage = () => {
             workingAddress: user.workingAddress
         });
     }
+
+    useEffect(() => {
+        if (sessionStorage.getItem(ACCESS_TOKEN_KEY) !== LOGGED_STATUS) {
+            navigate(PATH.HOME, { replace: true });
+        };
+    }, []);
 
     useEffect(() => {
         if (createUserResult.isUninitialized) return;

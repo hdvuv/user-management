@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/store/store';
@@ -5,7 +6,7 @@ import { create1 } from '../../../services/user/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { CreateContent } from './CreateStyled';
 import { ICreateInput1 } from './CreateFunctions';
-import { EMPTY, PATH } from "../../../constants/Common";
+import { ACCESS_TOKEN_KEY, EMPTY, LOGGED_STATUS, PATH } from "../../../constants/Common";
 
 const CreateUser1 = () => {
     const navigate = useNavigate();
@@ -31,6 +32,12 @@ const CreateUser1 = () => {
         dispatch(create1(data));
         navigate(PATH.CREATE2, { replace: true });
     }
+
+    useEffect(() => {
+        if (sessionStorage.getItem(ACCESS_TOKEN_KEY) !== LOGGED_STATUS) {
+            navigate(PATH.HOME, { replace: true });
+        };
+    }, []);
 
     return (
         <>

@@ -1,13 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LoginForm, LoginContent } from './LoginStyled';
 import { Container, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { Admin, useGetAdminsQuery } from "../../../services/admin/adminApi";
 import { useEffect, useState } from "react";
-import { ERROR_MSG, PATH } from "../../../constants/Common";
+import { ACCESS_TOKEN_KEY, ERROR_MSG, LOGGED_STATUS, PATH } from "../../../constants/Common";
 
 const LoginPage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { data, error, isLoading } = useGetAdminsQuery();
   const { register, handleSubmit, } = useForm();
   const [admins, setAdmins] = useState<Array<Admin>>([]);
@@ -18,9 +19,15 @@ const LoginPage = () => {
     }
   }, [isLoading])
 
+  useEffect(() => {
+    if (sessionStorage.getItem(ACCESS_TOKEN_KEY) === LOGGED_STATUS) {
+      navigate(PATH.LIST, { replace: true });
+    }
+  }, [pathname])
+
   const onSubmit = (data: any) => {
     if (checkExistAdmin(admins, data)) {
-      sessionStorage.setItem('access-token', 'LOGGED')
+      sessionStorage.setItem(ACCESS_TOKEN_KEY, LOGGED_STATUS);
       navigate(PATH.LIST, { replace: true });
     } else {
       alert(ERROR_MSG.INVALID_LOGIN)
