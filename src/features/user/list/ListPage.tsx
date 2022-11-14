@@ -5,7 +5,6 @@ import { useGetUsersQuery, useDeleteUserMutation } from "../../../services/user/
 import { useEffect } from 'react';
 import { PATH } from '../../../constants/Common';
 
-
 const ListUser = () => {
     const navigate = useNavigate();
     const { data, error, isLoading } = useGetUsersQuery();

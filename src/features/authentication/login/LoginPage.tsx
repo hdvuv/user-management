@@ -40,7 +40,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <Container>
+      <Container isDisplay={true}>
         <LoginForm method='post' onSubmit={handleSubmit(onSubmit)}>
           <PageTittle>
             <p>Login</p>

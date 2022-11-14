@@ -7,7 +7,6 @@ import { CreateContent } from './CreateStyled';
 import { ICreateInput1 } from './CreateFunctions';
 import { EMPTY, PATH } from "../../../constants/Common";
 
-
 const CreateUser1 = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -23,7 +22,6 @@ const CreateUser1 = () => {
             sex: EMPTY,
         }
     });
-
 
     const handleBack = () => {
         navigate(PATH.LIST, { replace: true });

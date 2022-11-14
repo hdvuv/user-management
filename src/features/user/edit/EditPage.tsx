@@ -6,7 +6,6 @@ import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/style
 import { EditContent } from './EditStyled';
 import { PATH } from "../../../constants/Common";
 
-
 const EditUser = () => {
     const navigate = useNavigate();
     const search = useLocation().search;

@@ -8,12 +8,14 @@ import ConfirmUser from '../features/user/confirm/ConfirmPage';
 import EditUser from '../features/user/edit/EditPage';
 import Header from '../shared/components/header/Header';
 import Footer from '../shared/components/footer/Footer';
+import Logout from '../shared/components/logout/Logout';
 import { PATH } from '../constants/Common';
 
 export function Navigator() {
     return (
         <BrowserRouter>
             <Header />
+            <Logout />
             <Routes>
                 <Route path={PATH.HOME} element={<LoginPage />} />
                 <Route path={PATH.LIST} element={<ListUser />} />

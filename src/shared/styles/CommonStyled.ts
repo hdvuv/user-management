@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     width: 100%;
-    min-height: calc(100vh - 130px);
+    min-height: ${(props: { isDisplay?: boolean }) => (props?.isDisplay ? 'calc(100vh - 130px)' : 'calc(100vh - 180px)')};
     display: flex;
     justify-content: center;
 `
