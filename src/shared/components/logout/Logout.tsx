@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { LogoutDiv } from '../logout/LogoutStyled';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { LogoutDiv } from '../logout/LogoutStyled';
 import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PATH } from '../../../constants/Common';
+import { strings } from '../../../localization/Localization';
 
 const Logout = () => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const Logout = () => {
 
   return (
     <LogoutDiv isDisplay={display}>
-      <button onClick={handleLogoutClick}>Logout</button>
+      <button onClick={handleLogoutClick}>{strings.common.logout_btn}</button>
     </LogoutDiv>
   );
 };
