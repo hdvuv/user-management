@@ -6,6 +6,7 @@ import CreateUser1 from '../features/user/create/CreatePage1';
 import CreateUser2 from '../features/user/create/CreatePage2';
 import ConfirmUser from '../features/user/confirm/ConfirmPage';
 import EditUser from '../features/user/edit/EditPage';
+import Error from '../features/error/ErrorPage';
 import Header from '../shared/components/header/Header';
 import Footer from '../shared/components/footer/Footer';
 import Logout from '../shared/components/logout/Logout';
@@ -24,6 +25,7 @@ export function Navigator() {
                 <Route path={PATH.CREATE2} element={<CreateUser2 />} />
                 <Route path={PATH.CONFIRM} element={<ConfirmUser />} />
                 <Route path={PATH.EDIT} element={<EditUser />} />
+                <Route path={'*'} element={<Error />} />
             </Routes>
             <Footer />
         </BrowserRouter>
