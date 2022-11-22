@@ -33,17 +33,10 @@ export const userSlice = createSlice({
     },
     reducers: {
         create1: (state, action) => {
-            state.user.name = action.payload.name;
-            state.user.sex = action.payload.sex;
-            state.user.phone = action.payload.phone;
-            state.user.email = action.payload.email;
-            state.user.address = action.payload.address;
+            state.user = {...state.user, ...action.payload};
         },
         create2: (state, action) => {
-            state.user.job = action.payload.job;
-            state.user.company = action.payload.company;
-            state.user.position = action.payload.position;
-            state.user.workingAddress = action.payload.workingAddress;
+            state.user = {...state.user, ...action.payload};
         },
     }
 })
