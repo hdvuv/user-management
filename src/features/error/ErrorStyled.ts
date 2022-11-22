@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ErrorContent = styled.div`
     width: 60%;
-    min-height: calc(100vh - 130px);
+    min-height: calc(100vh - 180px);
     display: flex;
     justify-content: center;
     align-items: center;

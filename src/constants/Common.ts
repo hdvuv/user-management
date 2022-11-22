@@ -6,7 +6,7 @@ export const PATH = {
     CREATE2: '/create2',
     CONFIRM: '/confirm',
     EDIT: '/edit',
-    BASE_QUERY: 'http://localhost:3000/',
+    BASE_QUERY: 'http://localhost:4000/',
 }
 
 export const EMPTY = '';

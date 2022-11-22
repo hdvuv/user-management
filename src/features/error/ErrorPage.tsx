@@ -23,7 +23,6 @@ const ErrorPage = () => {
                     </div>
                 </ErrorContent>
             </Container>
-
         </>
     )
 }

@@ -10,7 +10,6 @@ export const ListContent = styled.div`
     table, th, td {
         border: 1px solid #ccc;
     }
-    
     tr:first-child{
         color: #fff;
         background-color: #4285f4;
@@ -34,5 +33,17 @@ export const ListContent = styled.div`
     a{
         color: #1978D8;
         margin-right: 20px;
+    }
+    a:hover{
+        opacity: 0.5
+    }
+    tr td:last-child {
+        text-align: center;
+        a{
+            color: green;
+        }
+        a:last-child{
+            color: red;
+        }
     }
 `
