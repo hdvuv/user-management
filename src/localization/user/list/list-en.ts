@@ -6,8 +6,8 @@ export const listEN = {
     phone: 'Phone',
     address: 'Address',
     actions: 'Actions',
-    edit_btn: 'Edit',
-    delete_btn: 'Delete',
+    edit: 'Edit',
+    delete: 'Delete',
     create_btn: 'Create',
     no_record_msg: 'No users to display! Let create some record!!!'
 };

@@ -5,6 +5,8 @@ import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/style
 import { useGetUsersQuery, useDeleteUserMutation } from "../../../services/user/userApi";
 import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PATH } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 const ListUser = () => {
     const navigate = useNavigate();
@@ -87,10 +89,10 @@ const ListUser = () => {
                                                     <td>{user?.address}</td>
                                                     <td>
                                                         <a id={user?.id} href='' onClick={event => handleEditClick(event)}>
-                                                            {strings.list.edit_btn}
+                                                            <FontAwesomeIcon icon={faPencil} title={strings.list.edit}/>
                                                         </a>
                                                         <a id={user?.id} href='' onClick={event => handleDeleteClick(event)}>
-                                                            {strings.list.delete_btn}
+                                                            <FontAwesomeIcon icon={faTrashCan} title={strings.list.delete}/>
                                                         </a>
                                                     </td>
                                                 </tr>
