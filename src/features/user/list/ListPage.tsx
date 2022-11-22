@@ -40,7 +40,6 @@ const ListUser = () => {
 
     useEffect(() => {
         if (deleteUserResult.isUninitialized) return;
-        navigate(PATH.LIST, { replace: true });
     }, [deleteUserResult.isSuccess]);
 
     useEffect(() => {
