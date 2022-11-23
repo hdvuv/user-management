@@ -4,14 +4,15 @@ import { useForm } from "react-hook-form";
 import { useGetUserQuery, useUpdateUserMutation } from '../../../services/user/userApi';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { EditContent } from './EditStyled';
-import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PARAMS, PATH } from "../../../constants/Common";
+import { EMPTY, PARAMS, PATH, QUESTION_MARK } from "../../../constants/Common";
 import { strings } from '../../../localization/Localization';
+import useAuth from "../../../shared/hooks/useAuth";
 
 const EditUser = () => {
     const navigate = useNavigate();
-    const search = useLocation().search;
-    const currentUserId = new URLSearchParams(search).get(PARAMS.ID);
-    const { data, error, isLoading } = useGetUserQuery(currentUserId ? currentUserId : PARAMS.ID_RANDOM);
+    const location = useLocation();
+    const currentUserId = location.search ? location.search.replace(QUESTION_MARK, EMPTY) : PARAMS.ID_RANDOM;
+    const { data, error, isLoading } = useGetUserQuery(currentUserId);
     const [updateUser, updateUserResult] = useUpdateUserMutation();
 
     const [selectedUser, setSelectedUser] = useState({
@@ -33,11 +34,7 @@ const EditUser = () => {
         navigate(PATH.LIST, { replace: true });
     }
 
-    useEffect(() => {
-        if (sessionStorage.getItem(ACCESS_TOKEN_KEY) !== LOGGED_STATUS) {
-            navigate(PATH.HOME, { replace: true });
-        };
-    }, []);
+    useAuth();
 
     useEffect(() => {
         setSelectedUser({

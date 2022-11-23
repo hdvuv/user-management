@@ -11,6 +11,8 @@ export const PATH = {
 
 export const EMPTY = '';
 
+export const QUESTION_MARK = '?';
+
 export const ERROR_MSG = {
     INVALID_LOGIN: 'Invalid username and password!',
 };
