@@ -13,21 +13,21 @@ import Logout from '../shared/components/logout/Logout';
 import { PATH } from '../constants/Common';
 
 export function Navigator() {
-    return (
-        <BrowserRouter>
-            <Header />
-            <Logout />
-            <Routes>
-                <Route path={PATH.HOME} element={<LoginPage />} />
-                <Route path={PATH.LIST} element={<ListUser />} />
-                <Route path={PATH.DETAIL} element={<DetailUser />} />
-                <Route path={PATH.CREATE1} element={<CreateUser1 />} />
-                <Route path={PATH.CREATE2} element={<CreateUser2 />} />
-                <Route path={PATH.CONFIRM} element={<ConfirmUser />} />
-                <Route path={PATH.EDIT} element={<EditUser />} />
-                <Route path={'*'} element={<Error />} />
-            </Routes>
-            <Footer />
-        </BrowserRouter>
-    )
+  return (
+    <BrowserRouter>
+      <Header />
+      <Logout />
+      <Routes>
+        <Route path={PATH.HOME} element={<LoginPage />} />
+        <Route path={PATH.LIST} element={<ListUser />} />
+        <Route path={PATH.DETAIL} element={<DetailUser />} />
+        <Route path={PATH.CREATE1} element={<CreateUser1 />} />
+        <Route path={PATH.CREATE2} element={<CreateUser2 />} />
+        <Route path={PATH.CONFIRM} element={<ConfirmUser />} />
+        <Route path={PATH.EDIT} element={<EditUser />} />
+        <Route path={'*'} element={<Error />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
 }

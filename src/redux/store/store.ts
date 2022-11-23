@@ -5,17 +5,14 @@ import { userApi } from '../../services/user/userApi';
 import { adminApi } from '../../services/admin/adminApi';
 import UserSlice from '../../services/user/userSlice';
 
-
 export const store = configureStore({
-    reducer: {
-        [userApi.reducerPath]: userApi.reducer,
-        user: UserSlice,
-        [adminApi.reducerPath]: adminApi.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware()
-            .concat(userApi.middleware)
-            .concat(adminApi.middleware),
+  reducer: {
+    [userApi.reducerPath]: userApi.reducer,
+    user: UserSlice,
+    [adminApi.reducerPath]: adminApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(userApi.middleware).concat(adminApi.middleware),
 });
 
 setupListeners(store.dispatch);

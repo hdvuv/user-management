@@ -5,12 +5,10 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store/store';
 import { GlobalStyled } from './shared/styles/GlobalStyled';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <Provider store={store} >
+  <Provider store={store}>
     <GlobalStyled />
     <Navigator />
   </Provider>

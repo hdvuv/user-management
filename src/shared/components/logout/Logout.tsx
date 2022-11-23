@@ -18,9 +18,9 @@ const Logout = () => {
   }, [pathname]);
 
   const handleLogoutClick = () => {
-    sessionStorage.removeItem(ACCESS_TOKEN_KEY)
+    sessionStorage.removeItem(ACCESS_TOKEN_KEY);
     navigate(PATH.HOME, { replace: true });
-  }
+  };
 
   return (
     <LogoutDiv isDisplay={display}>
