@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { createSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ListContent } from './ListStyled';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { useGetUsersQuery, useDeleteUserMutation } from "../../../services/user/userApi";
@@ -20,25 +20,22 @@ const ListUser = () => {
         navigate(PATH.CREATE1, { replace: true });
     }
 
-    const handleDetailClick = (event: any) => {
-        const param = { id: event.currentTarget.id };
+    const handleDetailClick = (id: string) => {
         navigate({
             pathname: PATH.DETAIL,
-            search: `?${createSearchParams(param)}`,
+            search: `${id}`,
         });
     }
 
-    const handleEditClick = (event: any) => {
-        const param = { id: event.currentTarget.id };
+    const handleEditClick = (id: string) => {
         navigate({
             pathname: PATH.EDIT,
-            search: `?${createSearchParams(param)}`,
+            search: `${id}`,
         });
     }
 
-    const handleDeleteClick = (event: any) => {
-        const param = { id: event.currentTarget.id };
-        deleteUser(Number(param.id));
+    const handleDeleteClick = (id: string) => {
+        deleteUser(Number(id));
     }
 
     useEffect(() => {
@@ -77,17 +74,18 @@ const ListUser = () => {
                                                 <tr key={index}>
                                                     <td>{index + 1}</td>
                                                     <td>
-                                                        <a id={user?.id} href='' onClick={event => handleDetailClick(event)}>{user?.name}
+                                                        <a href='' onClick={() => handleDetailClick(user?.id)}>
+                                                            {user?.name}
                                                         </a>
                                                     </td>
                                                     <td>{user?.email}</td>
                                                     <td>{user?.phone}</td>
                                                     <td>{user?.address}</td>
                                                     <td>
-                                                        <a id={user?.id} href='' onClick={event => handleEditClick(event)}>
+                                                        <a href='' onClick={() => handleEditClick(user?.id)}>
                                                             <FontAwesomeIcon icon={faPencil} title={strings.list.edit}/>
                                                         </a>
-                                                        <a id={user?.id} href='' onClick={event => handleDeleteClick(event)}>
+                                                        <a href='' onClick={() => handleDeleteClick(user?.id)}>
                                                             <FontAwesomeIcon icon={faTrashCan} title={strings.list.delete}/>
                                                         </a>
                                                     </td>

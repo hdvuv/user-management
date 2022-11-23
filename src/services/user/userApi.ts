@@ -19,7 +19,7 @@ export interface User {
 type UsersResponse = User[];
 
 export const userApi = createApi({
-    reducerPath: 'user api',
+    reducerPath: 'userApi',
     baseQuery: fetchBaseQuery({ baseUrl: PATH.BASE_QUERY }),
     tagTypes: ['User'],
     endpoints: (builder) => ({

@@ -2,15 +2,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { DetailContent } from './DetailStyled';
 import { useGetUserQuery } from "../../../services/user/userApi";
-import { PARAMS, PATH } from '../../../constants/Common';
+import { EMPTY, PARAMS, PATH, QUESTION_MARK } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
 import useAuth from '../../../shared/hooks/useAuth';
 
 const DetailUser = () => {
     const navigate = useNavigate();
-    const search = useLocation().search;
-    const id = new URLSearchParams(search).get(PARAMS.ID);
-    const { data, error, isLoading } = useGetUserQuery(id ? id : PARAMS.ID_RANDOM);
+    const location = useLocation();
+    const { data, error, isLoading } = useGetUserQuery(
+        location.search ? location.search.replace(QUESTION_MARK, EMPTY) : PARAMS.ID_RANDOM
+    );
 
     useAuth();
     
