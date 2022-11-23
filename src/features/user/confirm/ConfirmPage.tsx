@@ -5,8 +5,9 @@ import { useCreateUserMutation } from '../../../services/user/userApi';
 import { userSelector } from '../../../services/user/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { ConfirmContent } from './ConfirmStyled';
-import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PATH } from '../../../constants/Common';
+import { PATH } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
+import useAuth from '../../../shared/hooks/useAuth';
 
 const ConfirmPage = () => {
     const navigate = useNavigate();
@@ -35,11 +36,7 @@ const ConfirmPage = () => {
         });
     }
 
-    useEffect(() => {
-        if (sessionStorage.getItem(ACCESS_TOKEN_KEY) !== LOGGED_STATUS) {
-            navigate(PATH.HOME, { replace: true });
-        };
-    }, []);
+    useAuth();
 
     useEffect(() => {
         if (createUserResult.isUninitialized) return;

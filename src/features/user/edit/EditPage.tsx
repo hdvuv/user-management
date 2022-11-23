@@ -6,6 +6,7 @@ import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/style
 import { EditContent } from './EditStyled';
 import { ACCESS_TOKEN_KEY, LOGGED_STATUS, PARAMS, PATH } from "../../../constants/Common";
 import { strings } from '../../../localization/Localization';
+import useAuth from "../../../shared/hooks/useAuth";
 
 const EditUser = () => {
     const navigate = useNavigate();
@@ -33,11 +34,7 @@ const EditUser = () => {
         navigate(PATH.LIST, { replace: true });
     }
 
-    useEffect(() => {
-        if (sessionStorage.getItem(ACCESS_TOKEN_KEY) !== LOGGED_STATUS) {
-            navigate(PATH.HOME, { replace: true });
-        };
-    }, []);
+    useAuth();
 
     useEffect(() => {
         setSelectedUser({
