@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/store/store';
 import { create1 } from '../../../services/user/userSlice';
@@ -8,12 +8,13 @@ import { ICreateInput1 } from './CreateFunctions';
 import {  EMPTY, PATH } from "../../../constants/Common";
 import { strings } from '../../../localization/Localization';
 import useAuth from "../../../shared/hooks/useAuth";
+import { Input } from "@mui/material";
 
 const CreateUser1 = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const {
-        register,
+        control,
         handleSubmit
     } = useForm<ICreateInput1>({
         defaultValues: {
@@ -52,46 +53,51 @@ const CreateUser1 = () => {
                                     <tr>
                                         <th>{strings.create.name}</th>
                                         <td>
-                                            <input
-                                                type='text'
-                                                {...register("name")}
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>{strings.create.phone}</th>
-                                        <td>
-                                            <input
-                                                type='text'
-                                                {...register("phone")}
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>{strings.create.email}</th>
-                                        <td>
-                                            <input
-                                                type='text'
-                                                {...register("email")}
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>{strings.create.address}</th>
-                                        <td>
-                                            <input
-                                                type='text'
-                                                {...register("address")}
-                                            />
+                                            <Controller
+                                            render={({ field }) => <Input {...field} />}
+                                            name="name"
+                                            control={control}
+                                          />
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>{strings.create.sex}</th>
                                         <td>
-                                            <input
-                                                type='text'
-                                                {...register("sex")}
-                                            />
+                                            <Controller
+                                            render={({ field }) => <Input {...field} />}
+                                            name="sex"
+                                            control={control}
+                                          />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{strings.create.phone}</th>
+                                        <td>
+                                            <Controller
+                                            render={({ field }) => <Input {...field} />}
+                                            name="phone"
+                                            control={control}
+                                          />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{strings.create.email}</th>
+                                        <td>
+                                            <Controller
+                                            render={({ field }) => <Input {...field} />}
+                                            name="email"
+                                            control={control}
+                                          />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{strings.create.address}</th>
+                                        <td>
+                                            <Controller
+                                            render={({ field }) => <Input {...field} />}
+                                            name="address"
+                                            control={control}
+                                          />
                                         </td>
                                     </tr>
                                 </tbody>

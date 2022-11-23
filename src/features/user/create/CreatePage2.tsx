@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { CreateContent } from './CreateStyled';
 import { useAppDispatch } from '../../../redux/store/store';
@@ -8,12 +8,13 @@ import { ICreateInput2 } from './CreateFunctions';
 import { EMPTY, PATH } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
 import useAuth from '../../../shared/hooks/useAuth';
+import { Input } from '@mui/material';
 
 const CreateUser2 = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const {
-        register,
+        control,
         handleSubmit
     } = useForm<ICreateInput2>({
         defaultValues: {
@@ -51,37 +52,41 @@ const CreateUser2 = () => {
                                     <tr>
                                         <th>{strings.create.job}</th>
                                         <td>
-                                            <input
-                                                type='text'
-                                                {...register("job")}
-                                            />
+                                            <Controller
+                                            render={({ field }) => <Input {...field} />}
+                                            name="job"
+                                            control={control}
+                                          />
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>{strings.create.position}</th>
                                         <td>
-                                            <input
-                                                type='text'
-                                                {...register("position")}
-                                            />
+                                            <Controller
+                                            render={({ field }) => <Input {...field} />}
+                                            name="position"
+                                            control={control}
+                                          />
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>{strings.create.company}</th>
                                         <td>
-                                            <input
-                                                type='text'
-                                                {...register("company")}
-                                            />
+                                            <Controller
+                                            render={({ field }) => <Input {...field} />}
+                                            name="company"
+                                            control={control}
+                                          />
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>{strings.create.working_address}</th>
                                         <td>
-                                            <input
-                                                type='text'
-                                                {...register("workingAddress")}
-                                            />
+                                            <Controller
+                                            render={({ field }) => <Input {...field} />}
+                                            name="workingAddress"
+                                            control={control}
+                                          />
                                         </td>
                                     </tr>
                                 </tbody>
