@@ -1,19 +1,22 @@
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../redux/store/store';
-import { create1 } from '../../../services/user/userSlice';
+import { useAppDispatch, useTypedSelector } from '../../../redux/store/store';
+import { create1, userSelector } from '../../../services/user/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { CreateContent } from './CreateStyled';
 import { ICreateInput1 } from './CreateFunctions';
 import { EMPTY, PATH } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
 import useAuth from '../../../shared/hooks/useAuth';
-import { Input } from '@mui/material';
+import { useEffect } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const CreateUser1 = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { control, handleSubmit } = useForm<ICreateInput1>({
+  const selector = useTypedSelector(userSelector);
+
+  const { register, handleSubmit, reset } = useForm<ICreateInput1>({
     defaultValues: {
       name: EMPTY,
       phone: EMPTY,
@@ -22,6 +25,16 @@ const CreateUser1 = () => {
       sex: EMPTY,
     },
   });
+
+  useEffect(() => {
+    reset({
+      name: selector.user.name,
+      phone: selector.user.phone,
+      email: selector.user.email,
+      address: selector.user.address,
+      sex: selector.user.sex,
+    });
+  }, []);
 
   const handleBack = () => {
     navigate(PATH.LIST, { replace: true });
@@ -48,51 +61,31 @@ const CreateUser1 = () => {
                   <tr>
                     <th>{strings.create.name}</th>
                     <td>
-                      <Controller
-                        render={({ field }) => <Input {...field} />}
-                        name="name"
-                        control={control}
-                      />
+                      <input type="text" {...register('name')} />
                     </td>
                   </tr>
                   <tr>
                     <th>{strings.create.sex}</th>
                     <td>
-                      <Controller
-                        render={({ field }) => <Input {...field} />}
-                        name="sex"
-                        control={control}
-                      />
+                      <input type="text" {...register('sex')} />
                     </td>
                   </tr>
                   <tr>
                     <th>{strings.create.phone}</th>
                     <td>
-                      <Controller
-                        render={({ field }) => <Input {...field} />}
-                        name="phone"
-                        control={control}
-                      />
+                      <input type="text" {...register('phone')} />
                     </td>
                   </tr>
                   <tr>
                     <th>{strings.create.email}</th>
                     <td>
-                      <Controller
-                        render={({ field }) => <Input {...field} />}
-                        name="email"
-                        control={control}
-                      />
+                      <input type="text" {...register('email')} />
                     </td>
                   </tr>
                   <tr>
                     <th>{strings.create.address}</th>
                     <td>
-                      <Controller
-                        render={({ field }) => <Input {...field} />}
-                        name="address"
-                        control={control}
-                      />
+                      <input type="text" {...register('address')} />
                     </td>
                   </tr>
                 </tbody>
