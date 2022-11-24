@@ -29,4 +29,7 @@ export const CreateContent = styled.div`
     margin-bottom: 10px;
     padding-left: 10px;
   }
+  p {
+    color: red;
+  }
 `;

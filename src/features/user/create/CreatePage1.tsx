@@ -4,7 +4,7 @@ import { useAppDispatch, useTypedSelector } from '../../../redux/store/store';
 import { create1, userSelector } from '../../../services/user/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { CreateContent } from './CreateStyled';
-import { ICreateInput1 } from './CreateFunctions';
+import { ICreateInput1, validationSchema1 } from './CreateFunctions';
 import { EMPTY, PATH } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
 import useAuth from '../../../shared/hooks/useAuth';
@@ -16,7 +16,13 @@ const CreateUser1 = () => {
   const dispatch = useAppDispatch();
   const selector = useTypedSelector(userSelector);
 
-  const { register, handleSubmit, reset } = useForm<ICreateInput1>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ICreateInput1>({
+    resolver: yupResolver(validationSchema1),
     defaultValues: {
       name: EMPTY,
       phone: EMPTY,
@@ -28,11 +34,11 @@ const CreateUser1 = () => {
 
   useEffect(() => {
     reset({
-      name: selector.user.name,
-      phone: selector.user.phone,
-      email: selector.user.email,
-      address: selector.user.address,
-      sex: selector.user.sex,
+      name: selector.user.name.trim(),
+      phone: selector.user.phone.trim(),
+      email: selector.user.email.trim(),
+      address: selector.user.address.trim(),
+      sex: selector.user.sex.trim(),
     });
   }, []);
 
@@ -62,30 +68,35 @@ const CreateUser1 = () => {
                     <th>{strings.create.name}</th>
                     <td>
                       <input type="text" {...register('name')} />
+                      {errors.name && <p>{errors.name.message}</p>}
                     </td>
                   </tr>
                   <tr>
                     <th>{strings.create.sex}</th>
                     <td>
                       <input type="text" {...register('sex')} />
+                      {errors.sex && <p>{errors.sex.message}</p>}
                     </td>
                   </tr>
                   <tr>
                     <th>{strings.create.phone}</th>
                     <td>
                       <input type="text" {...register('phone')} />
+                      {errors.phone && <p>{errors.phone.message}</p>}
                     </td>
                   </tr>
                   <tr>
                     <th>{strings.create.email}</th>
                     <td>
                       <input type="text" {...register('email')} />
+                      {errors.email && <p>{errors.email.message}</p>}
                     </td>
                   </tr>
                   <tr>
                     <th>{strings.create.address}</th>
                     <td>
                       <input type="text" {...register('address')} />
+                      {errors.address && <p>{errors.address.message}</p>}
                     </td>
                   </tr>
                 </tbody>
