@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTypedSelector } from '../../../redux/store/store';
+import { useAppDispatch, useTypedSelector } from '../../../redux/store/store';
 import { useCreateUserMutation } from '../../../services/user/userApi';
-import { userSelector } from '../../../services/user/userSlice';
+import { reset, userSelector } from '../../../services/user/userSlice';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { ConfirmContent } from './ConfirmStyled';
 import { PATH } from '../../../constants/Common';
@@ -11,6 +11,7 @@ import useAuth from '../../../shared/hooks/useAuth';
 
 const ConfirmPage = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const user = useTypedSelector(userSelector).user;
   const [createUser, createUserResult] = useCreateUserMutation();
 
@@ -34,6 +35,7 @@ const ConfirmPage = () => {
       position: user.position,
       workingAddress: user.workingAddress,
     });
+    dispatch(reset());
   };
 
   useAuth();
