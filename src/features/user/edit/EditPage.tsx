@@ -7,6 +7,9 @@ import { EditContent } from './EditStyled';
 import { EMPTY, PARAMS, PATH, QUESTION_MARK } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
 import useAuth from '../../../shared/hooks/useAuth';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import SkeletonCustomize from '../../skeleton/SkeletonCustomize';
 
 const EditUser = () => {
   const navigate = useNavigate();
@@ -73,7 +76,7 @@ const EditUser = () => {
     navigate(PATH.LIST, { replace: true });
   }, [updateUserResult.isSuccess]);
 
-  if (updateUserResult.isLoading) return <> {strings.common.loading_msg}</>;
+  if (updateUserResult.isLoading) return <SkeletonCustomize />;
   if (updateUserResult.isError) return <> {strings.common.error_loading_msg}</>;
 
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
@@ -85,12 +88,12 @@ const EditUser = () => {
       <Container>
         <Wrapper>
           <PageTittle>
-            <p>{strings.edit.edit_title}</p>
+            <p>{strings.edit.edit_title || <Skeleton />}</p>
           </PageTittle>
           {error ? (
             <> {strings.common.error_loading_msg} </>
           ) : isLoading ? (
-            <> {strings.common.loading_msg}</>
+            <SkeletonCustomize />
           ) : data ? (
             <>
               <EditContent>

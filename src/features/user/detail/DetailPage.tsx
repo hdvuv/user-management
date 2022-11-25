@@ -5,6 +5,7 @@ import { useGetUserQuery } from '../../../services/user/userApi';
 import { EMPTY, PARAMS, PATH, QUESTION_MARK } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
 import useAuth from '../../../shared/hooks/useAuth';
+import SkeletonCustomize from '../../skeleton/SkeletonCustomize';
 
 const DetailUser = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const DetailUser = () => {
           {error ? (
             <> {strings.common.error_loading_msg} </>
           ) : isLoading ? (
-            <> {strings.common.loading_msg}</>
+            <SkeletonCustomize />
           ) : data ? (
             <>
               <DetailContent>
