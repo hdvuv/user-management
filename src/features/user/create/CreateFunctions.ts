@@ -1,5 +1,9 @@
 import * as yup from 'yup';
 import { isValidEmail, isValidPhone } from '../../../shared/utils/Validation';
+
+/**
+ * Interface for form data of Create1 screen
+ */
 export interface ICreateInput1 {
   name: string;
   phone: string;
@@ -8,6 +12,9 @@ export interface ICreateInput1 {
   sex: string;
 }
 
+/**
+ * Interface for form data of Create2 screen
+ */
 export interface ICreateInput2 {
   job: string;
   position: string;
@@ -15,6 +22,9 @@ export interface ICreateInput2 {
   workingAddress: string;
 }
 
+/**
+ * Validate data of Create1 screen
+ */
 export const validationSchema1 = yup
   .object({
     name: yup.string().required('Not empty!'),
@@ -32,6 +42,9 @@ export const validationSchema1 = yup
   })
   .required();
 
+/**
+ * Validate data of Create2 screen
+ */
 export const validationSchema2 = yup
   .object({
     job: yup.string().required('Not empty!'),

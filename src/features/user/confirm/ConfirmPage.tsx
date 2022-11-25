@@ -16,14 +16,28 @@ const ConfirmPage = () => {
   const user = useTypedSelector(userSelector).user;
   const [createUser, createUserResult] = useCreateUserMutation();
 
+  /**
+   * Check logged in
+   */
+  useAuth();
+
+  /**
+   * Handle go back to CREATE1 screen, edit basic information
+   */
   const handleBack1 = () => {
     navigate(PATH.CREATE1, { replace: true });
   };
 
+  /**
+   * Handle go back to CREATE2 screen, edit job information
+   */
   const handleBack2 = () => {
     navigate(PATH.CREATE2, { replace: true });
   };
 
+  /**
+   * Handle call API to create new user
+   */
   const handleNext = async () => {
     createUser({
       name: user.name,
@@ -39,14 +53,22 @@ const ConfirmPage = () => {
     dispatch(reset());
   };
 
-  useAuth();
-
+  /**
+   * When API create new user success, move to List User screen
+   */
   useEffect(() => {
     if (createUserResult.isUninitialized) return;
     navigate(PATH.LIST, { replace: true });
   }, [createUserResult.isSuccess]);
 
+  /**
+   * When API Create User is loading, display skeleton
+   */
   if (createUserResult.isLoading) return <SkeletonCustomize />;
+
+  /**
+   * When API Create User is error, display error message
+   */
   if (createUserResult.isError) return <> {strings.common.error_loading_msg}</>;
 
   return (

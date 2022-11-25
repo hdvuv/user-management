@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ListContent } from './ListStyled';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
 import { useGetUsersQuery, useDeleteUserMutation } from '../../../services/user/userApi';
-import { PATH } from '../../../constants/Common';
+import { PAGINATION, PATH } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
@@ -15,23 +15,32 @@ const ListUser = () => {
   const navigate = useNavigate();
   const { data, error, isLoading } = useGetUsersQuery();
   const [deleteUser, deleteUserResult] = useDeleteUserMutation();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(10);
-
-  useAuth();
-
+  // Current page
+  const [currentPage, setCurrentPage] = useState(PAGINATION.CURRENT_PAGE);
+  // Set number of record per page
+  const [usersPerPage] = useState(PAGINATION.PER_PAGE);
   // Get current users
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = data?.slice(indexOfFirstUser, indexOfLastUser);
 
-  // Change page
-  const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber);
+  /**
+   * Check logged in
+   */
+  useAuth();
 
+  /**
+   * Handle go to CREATE1 screen, can start enter information to create a new user
+   */
   const handleCreateClick = () => {
     navigate(PATH.CREATE1, { replace: true });
   };
 
+  /**
+   * Handle go to DETAIL screen
+   *
+   * @param id id of user that want to view detail
+   */
   const handleDetailClick = (id: string) => {
     navigate({
       pathname: PATH.DETAIL,
@@ -39,6 +48,9 @@ const ListUser = () => {
     });
   };
 
+  /**
+   * Handle go to EDIT screen, can start enter information to create a new user
+   */
   const handleEditClick = (id: string) => {
     navigate({
       pathname: PATH.EDIT,
@@ -46,17 +58,45 @@ const ListUser = () => {
     });
   };
 
+  /**
+   * Handle to delete user record by id
+   *
+   * @param id id of user that want to delete
+   */
   const handleDeleteClick = (id: string) => {
     deleteUser(Number(id));
   };
 
+  /**
+   * Handle paginate
+   *
+   * @param pageNumber selected page
+   * @returns set current page when page is selected
+   */
+  const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber);
+
+  /**
+   * When API delete user success, move to List User screen
+   */
   useEffect(() => {
     if (deleteUserResult.isUninitialized) return;
   }, [deleteUserResult.isSuccess]);
 
+  /**
+   * When API Delete User is loading, display skeleton
+   */
   if (deleteUserResult.isLoading) return <SkeletonCustomize />;
+
+  /**
+   * When API Delete User is error, display error message
+   */
   if (deleteUserResult.isError) return <> {strings.common.error_loading_msg}</>;
 
+  /**
+   * Display number of user record in system
+   *
+   * @returns line contain number of user record in system
+   */
   const displayTotalUser = () => {
     return (
       <>

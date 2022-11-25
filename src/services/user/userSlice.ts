@@ -2,6 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { EMPTY } from '../../constants/Common';
 import { RootState } from '../../redux/store/store';
 
+/**
+ * Interface UserState
+ */
 export interface UserState {
   name: string;
   sex: string;
@@ -14,6 +17,9 @@ export interface UserState {
   workingAddress: string;
 }
 
+/**
+ * Initial state of UserState
+ */
 const initialUser: UserState = {
   name: EMPTY,
   sex: EMPTY,

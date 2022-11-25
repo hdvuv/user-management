@@ -15,7 +15,6 @@ const CreateUser2 = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const selector = useTypedSelector(userSelector);
-
   const {
     register,
     handleSubmit,
@@ -31,6 +30,14 @@ const CreateUser2 = () => {
     },
   });
 
+  /**
+   * Check logged in
+   */
+  useAuth();
+
+  /**
+   * Keep entered data
+   */
   useEffect(() => {
     reset({
       job: selector.user.job.trim(),
@@ -40,16 +47,22 @@ const CreateUser2 = () => {
     });
   }, []);
 
+  /**
+   * Handle back to Create1 screen
+   */
   const handleBack = () => {
     navigate(PATH.CREATE1, { replace: true });
   };
 
+  /**
+   * Store entered data, then move to Confirm screen
+   *
+   * @param data object contain job information
+   */
   const submit = (data: ICreateInput2) => {
     dispatch(create2(data));
     navigate(PATH.CONFIRM, { replace: true });
   };
-
-  useAuth();
 
   return (
     <>

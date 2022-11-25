@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { PATH } from '../../constants/Common';
 
-// User
+/**
+ * Interface of User
+ */
 export interface User {
   id: string;
   name: string;
@@ -15,7 +17,9 @@ export interface User {
   workingAddress: string;
 }
 
-// List User
+/**
+ * List of User
+ */
 type UsersResponse = User[];
 
 export const userApi = createApi({

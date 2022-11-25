@@ -1,14 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { PATH } from '../../constants/Common';
 
-// Admin
+/**
+ * Interface of Admin
+ */
 export interface Admin {
   id: string;
   username: string;
   password: string;
 }
 
-// List Admin
+/**
+ * List of Admin
+ */
 type AdminsResponse = Admin[];
 
 export const adminApi = createApi({
