@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../../../shared/hooks/useAuth';
 import Pagination from '../../pagination/Pagination';
+import SkeletonCustomize from '../../skeleton/SkeletonCustomize';
 
 const ListUser = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const ListUser = () => {
     if (deleteUserResult.isUninitialized) return;
   }, [deleteUserResult.isSuccess]);
 
-  if (deleteUserResult.isLoading) return <> {strings.common.loading_msg}</>;
+  if (deleteUserResult.isLoading) return <SkeletonCustomize />;
   if (deleteUserResult.isError) return <> {strings.common.error_loading_msg}</>;
 
   const displayTotalUser = () => {
@@ -74,7 +75,7 @@ const ListUser = () => {
           {error ? (
             <> {strings.common.error_loading_msg} </>
           ) : isLoading ? (
-            <> {strings.common.loading_msg}</>
+            <SkeletonCustomize />
           ) : data?.length ? (
             <>
               <ListContent>

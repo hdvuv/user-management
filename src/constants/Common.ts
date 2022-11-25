@@ -7,6 +7,7 @@ export const PATH = {
   CONFIRM: '/confirm',
   EDIT: '/edit',
   BASE_QUERY: 'http://localhost:4000/',
+  INVALID: '*',
 };
 
 export const EMPTY = '';

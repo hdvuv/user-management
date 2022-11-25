@@ -8,6 +8,7 @@ import { ConfirmContent } from './ConfirmStyled';
 import { PATH } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
 import useAuth from '../../../shared/hooks/useAuth';
+import SkeletonCustomize from '../../skeleton/SkeletonCustomize';
 
 const ConfirmPage = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const ConfirmPage = () => {
     navigate(PATH.LIST, { replace: true });
   }, [createUserResult.isSuccess]);
 
-  if (createUserResult.isLoading) return <> {strings.common.loading_msg}</>;
+  if (createUserResult.isLoading) return <SkeletonCustomize />;
   if (createUserResult.isError) return <> {strings.common.error_loading_msg}</>;
 
   return (
