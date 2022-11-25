@@ -14,6 +14,9 @@ const DetailUser = () => {
     location.search ? location.search.replace(QUESTION_MARK, EMPTY) : PARAMS.ID_RANDOM
   );
 
+  /**
+   * Check logged in
+   */
   useAuth();
 
   return (

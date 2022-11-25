@@ -2,6 +2,10 @@ import Skeleton from 'react-loading-skeleton';
 import { SkeletonContent } from './SkeletonStyled';
 
 const SkeletonCustomize = () => {
+  /**
+   * Common skeleton for all screens
+   * This skeleton have 10 line
+   */
   return (
     <SkeletonContent>
       {Array(10)

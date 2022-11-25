@@ -7,6 +7,9 @@ import { strings } from '../../localization/Localization';
 const ErrorPage = () => {
   const navigate = useNavigate();
 
+  /**
+   * Handle move to Login Screen while on Error Screen
+   */
   const handleGoHome = () => {
     navigate(PATH.HOME);
   };

@@ -19,7 +19,6 @@ const EditUser = () => {
     : PARAMS.ID_RANDOM;
   const { data, error, isLoading } = useGetUserQuery(currentUserId);
   const [updateUser, updateUserResult] = useUpdateUserMutation();
-
   const [selectedUser, setSelectedUser] = useState({
     id: currentUserId,
     name: data?.name,
@@ -32,15 +31,16 @@ const EditUser = () => {
     company: data?.company,
     workingAddress: data?.workingAddress,
   });
-
   const { handleSubmit } = useForm();
 
-  const handleBack = () => {
-    navigate(PATH.LIST, { replace: true });
-  };
-
+  /**
+   * Check logged in
+   */
   useAuth();
 
+  /**
+   * Wait for the system to call the user API
+   */
   useEffect(() => {
     setSelectedUser({
       id: currentUserId,
@@ -56,6 +56,16 @@ const EditUser = () => {
     });
   }, [isLoading]);
 
+  /**
+   * Handle back to List User screen
+   */
+  const handleBack = () => {
+    navigate(PATH.LIST, { replace: true });
+  };
+
+  /**
+   * Handle call API to edit user
+   */
   const submit = async () => {
     updateUser({
       id: String(selectedUser?.id),
@@ -71,14 +81,28 @@ const EditUser = () => {
     });
   };
 
+  /**
+   * When edit user success, move to List User Screen
+   */
   useEffect(() => {
     if (updateUserResult.isUninitialized) return;
     navigate(PATH.LIST, { replace: true });
   }, [updateUserResult.isSuccess]);
 
+  /**
+   * When API Update User is loading, display skeleton
+   */
   if (updateUserResult.isLoading) return <SkeletonCustomize />;
+
+  /**
+   * When API Update User is error, display error message
+   */
   if (updateUserResult.isError) return <> {strings.common.error_loading_msg}</>;
 
+  /**
+   * Handle store value input change
+   * @param e
+   */
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
   };

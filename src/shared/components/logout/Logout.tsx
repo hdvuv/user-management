@@ -9,6 +9,9 @@ const Logout = () => {
   const { pathname } = useLocation();
   const [display, setDisplay] = useState(false);
 
+  /**
+   * Check login when url changed
+   */
   useEffect(() => {
     if (sessionStorage.getItem(ACCESS_TOKEN_KEY) === LOGGED_STATUS) {
       setDisplay(true);
@@ -17,6 +20,9 @@ const Logout = () => {
     }
   }, [pathname]);
 
+  /**
+   * When click button logout, move to LOGIN screen
+   */
   const handleLogoutClick = () => {
     sessionStorage.removeItem(ACCESS_TOKEN_KEY);
     navigate(PATH.HOME, { replace: true });

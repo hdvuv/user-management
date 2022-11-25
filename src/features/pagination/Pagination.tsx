@@ -1,8 +1,10 @@
 import { PaginationContent } from './PaginationStyled';
 
 const Pagination = ({ usersPerPage, totalUsers, paginate }: any) => {
+  // Array contain number of pages
   const pageNumbers = [];
 
+  // Calculate number of page, then push to the array above
   for (let i = 1; i <= Math.ceil(totalUsers / usersPerPage); i++) {
     pageNumbers.push(i);
   }

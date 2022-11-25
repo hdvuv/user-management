@@ -15,7 +15,6 @@ const CreateUser1 = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const selector = useTypedSelector(userSelector);
-
   const {
     register,
     handleSubmit,
@@ -32,6 +31,14 @@ const CreateUser1 = () => {
     },
   });
 
+  /**
+   * Check logged in
+   */
+  useAuth();
+
+  /**
+   * Keep entered data
+   */
   useEffect(() => {
     reset({
       name: selector.user.name.trim(),
@@ -42,16 +49,22 @@ const CreateUser1 = () => {
     });
   }, []);
 
+  /**
+   * Handle back to List User screen
+   */
   const handleBack = () => {
     navigate(PATH.LIST, { replace: true });
   };
 
+  /**
+   * Store entered data, then move to Create2 screen
+   *
+   * @param data object contain basic user information
+   */
   const submit = (data: ICreateInput1) => {
     dispatch(create1(data));
     navigate(PATH.CREATE2, { replace: true });
   };
-
-  useAuth();
 
   return (
     <>
