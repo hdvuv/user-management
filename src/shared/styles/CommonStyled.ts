@@ -35,8 +35,8 @@ export const ButtonDiv = styled.div`
     font-weight: bold;
     margin-right: 20px;
   }
-  button::hover,
-  input::hover {
+  button:hover,
+  input:hover {
     background-color: #0a1d37;
   }
 `;
