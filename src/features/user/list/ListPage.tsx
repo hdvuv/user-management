@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ListContent } from './ListStyled';
 import { Container, Wrapper, PageTittle, ButtonDiv } from '../../../shared/styles/CommonStyled';
@@ -8,13 +8,24 @@ import { strings } from '../../../localization/Localization';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../../../shared/hooks/useAuth';
+import Pagination from '../../pagination/Pagination';
 
 const ListUser = () => {
   const navigate = useNavigate();
   const { data, error, isLoading } = useGetUsersQuery();
   const [deleteUser, deleteUserResult] = useDeleteUserMutation();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage] = useState(10);
 
   useAuth();
+
+  // Get current users
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = data?.slice(indexOfFirstUser, indexOfLastUser);
+
+  // Change page
+  const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber);
 
   const handleCreateClick = () => {
     navigate(PATH.CREATE1, { replace: true });
@@ -45,6 +56,14 @@ const ListUser = () => {
   if (deleteUserResult.isLoading) return <> {strings.common.loading_msg}</>;
   if (deleteUserResult.isError) return <> {strings.common.error_loading_msg}</>;
 
+  const displayTotalUser = () => {
+    return (
+      <>
+        <span>Total Users: {`${data?.length}`}</span>
+      </>
+    );
+  };
+
   return (
     <>
       <Container>
@@ -59,6 +78,7 @@ const ListUser = () => {
           ) : data?.length ? (
             <>
               <ListContent>
+                {displayTotalUser()}
                 <table>
                   <tbody>
                     <tr>
@@ -69,10 +89,10 @@ const ListUser = () => {
                       <th>{strings.list.address}</th>
                       <th>{strings.list.actions}</th>
                     </tr>
-                    {data?.map((user, index) => {
+                    {currentUsers?.map((user, index) => {
                       return (
                         <tr key={index}>
-                          <td>{index + 1}</td>
+                          <td>{index + indexOfFirstUser + 1}</td>
                           <td>
                             <a href="" onClick={() => handleDetailClick(user?.id)}>
                               {user?.name}
@@ -95,6 +115,11 @@ const ListUser = () => {
                   </tbody>
                 </table>
               </ListContent>
+              <Pagination
+                usersPerPage={usersPerPage}
+                totalUsers={data?.length}
+                paginate={paginate}
+              />
               <ButtonDiv>
                 <button onClick={handleCreateClick}>{strings.list.create_btn}</button>
               </ButtonDiv>

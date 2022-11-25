@@ -13,7 +13,7 @@ export const LogoutDiv = styled.div`
     font-weight: bold;
     margin: 10px 50px;
   }
-  button::hover {
+  button:hover {
     background-color: #0a1d37;
   }
 `;
