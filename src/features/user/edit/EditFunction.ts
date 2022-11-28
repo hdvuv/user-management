@@ -3,20 +3,14 @@ import { LENGTH_VALIDATE, MESSAGE_VALIDATE, NAME_VALIDATE } from '../../../const
 import { isValidEmail, isValidPhone } from '../../../shared/utils/Validation';
 
 /**
- * Interface for form data of Create1 screen
+ * Interface for form data of EDIT screen
  */
-export interface ICreateInput1 {
+export interface IEditInput {
   name: string;
   phone: string;
   email: string;
   address: string;
   sex: string;
-}
-
-/**
- * Interface for form data of Create2 screen
- */
-export interface ICreateInput2 {
   job: string;
   position: string;
   company: string;
@@ -24,9 +18,9 @@ export interface ICreateInput2 {
 }
 
 /**
- * Validate data of Create1 screen
+ * Validate data of EDIT screen
  */
-export const validationSchema1 = yup
+export const validationSchema = yup
   .object({
     name: yup.string().required(MESSAGE_VALIDATE.NOT_EMPTY),
     sex: yup.string().required(MESSAGE_VALIDATE.NOT_EMPTY),
@@ -45,15 +39,6 @@ export const validationSchema1 = yup
       .test(NAME_VALIDATE.FORMAT, MESSAGE_VALIDATE.INVALID_FORMAT_EMAIL, (value) =>
         isValidEmail(value)
       ),
-    address: yup.string().required(MESSAGE_VALIDATE.NOT_EMPTY),
-  })
-  .required();
-
-/**
- * Validate data of Create2 screen
- */
-export const validationSchema2 = yup
-  .object({
     address: yup.string().required(MESSAGE_VALIDATE.NOT_EMPTY),
     job: yup.string().required(MESSAGE_VALIDATE.NOT_EMPTY),
     position: yup.string().required(MESSAGE_VALIDATE.NOT_EMPTY),

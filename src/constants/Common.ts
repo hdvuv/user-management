@@ -55,3 +55,29 @@ export const PAGINATION = {
   PER_PAGE: 10,
   CURRENT_PAGE: 1,
 };
+
+/**
+ * Message to validate
+ */
+export const MESSAGE_VALIDATE = {
+  NOT_EMPTY: 'Not empty!',
+  LENGTH_PHONE: 'Length is 10!',
+  NUMBER_REQUIRE: 'Number required!',
+  INVALID_FORMAT_EMAIL: 'Format email xxx@yyy.zzz',
+};
+
+/**
+ * Name of validate
+ */
+export const NAME_VALIDATE = {
+  LENGTH: 'length',
+  NUMBER: 'number',
+  FORMAT: 'format',
+};
+
+/**
+ * Name of validate
+ */
+export const LENGTH_VALIDATE = {
+  PHONE: 10,
+};

@@ -10,6 +10,8 @@ import useAuth from '../../../shared/hooks/useAuth';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import SkeletonCustomize from '../../skeleton/SkeletonCustomize';
+import { IEditInput, validationSchema } from './EditFunction';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const EditUser = () => {
   const navigate = useNavigate();
@@ -19,19 +21,25 @@ const EditUser = () => {
     : PARAMS.ID_RANDOM;
   const { data, error, isLoading } = useGetUserQuery(currentUserId);
   const [updateUser, updateUserResult] = useUpdateUserMutation();
-  const [selectedUser, setSelectedUser] = useState({
-    id: currentUserId,
-    name: data?.name,
-    phone: data?.phone,
-    email: data?.email,
-    address: data?.address,
-    sex: data?.sex,
-    job: data?.job,
-    position: data?.position,
-    company: data?.company,
-    workingAddress: data?.workingAddress,
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<IEditInput>({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      name: EMPTY,
+      phone: EMPTY,
+      email: EMPTY,
+      address: EMPTY,
+      sex: EMPTY,
+      job: EMPTY,
+      position: EMPTY,
+      company: EMPTY,
+      workingAddress: EMPTY,
+    },
   });
-  const { handleSubmit } = useForm();
 
   /**
    * Check logged in
@@ -39,22 +47,21 @@ const EditUser = () => {
   useAuth();
 
   /**
-   * Wait for the system to call the user API
+   * Set form data
    */
   useEffect(() => {
-    setSelectedUser({
-      id: currentUserId,
-      name: data?.name,
-      phone: data?.phone,
-      email: data?.email,
-      address: data?.address,
-      sex: data?.sex,
-      job: data?.job,
-      position: data?.position,
-      company: data?.company,
-      workingAddress: data?.workingAddress,
+    reset({
+      name: data?.name.trim(),
+      phone: data?.phone.trim(),
+      email: data?.email.trim(),
+      address: data?.address.trim(),
+      sex: data?.sex.trim(),
+      job: data?.job.trim(),
+      position: data?.position.trim(),
+      company: data?.company.trim(),
+      workingAddress: data?.workingAddress.trim(),
     });
-  }, [isLoading]);
+  }, [data]);
 
   /**
    * Handle back to List User screen
@@ -66,18 +73,10 @@ const EditUser = () => {
   /**
    * Handle call API to edit user
    */
-  const submit = async () => {
+  const submit = async (data: IEditInput) => {
     updateUser({
-      id: String(selectedUser?.id),
-      name: selectedUser?.name,
-      sex: selectedUser?.sex,
-      phone: selectedUser?.phone,
-      email: selectedUser?.email,
-      address: selectedUser?.address,
-      job: selectedUser?.job,
-      company: selectedUser?.company,
-      position: selectedUser?.position,
-      workingAddress: selectedUser?.workingAddress,
+      id: currentUserId,
+      ...data,
     });
   };
 
@@ -99,14 +98,6 @@ const EditUser = () => {
    */
   if (updateUserResult.isError) return <> {strings.common.error_loading_msg}</>;
 
-  /**
-   * Handle store value input change
-   * @param e
-   */
-  const handleInputChange = (e: { target: { name: any; value: any } }) => {
-    setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
-  };
-
   return (
     <>
       <Container>
@@ -127,109 +118,64 @@ const EditUser = () => {
                       <tr>
                         <td>{strings.detail.name}</td>
                         <td>
-                          <input
-                            type="text"
-                            name="name"
-                            value={selectedUser.name}
-                            onChange={handleInputChange}
-                            required
-                          />
+                          <input type="text" {...register('name')} />
+                          {errors.name && <p>{errors.name.message}</p>}
                         </td>
                       </tr>
                       <tr>
                         <td>{strings.detail.sex}</td>
                         <td>
-                          <input
-                            type="text"
-                            name="sex"
-                            value={selectedUser.sex}
-                            onChange={handleInputChange}
-                            required
-                          />
+                          <input type="text" {...register('sex')} />
+                          {errors.sex && <p>{errors.sex.message}</p>}
                         </td>
                       </tr>
                       <tr>
                         <td>{strings.detail.phone}</td>
                         <td>
-                          <input
-                            type="text"
-                            name="phone"
-                            value={selectedUser.phone}
-                            onChange={handleInputChange}
-                            required
-                          />
+                          <input type="text" {...register('phone')} />
+                          {errors.phone && <p>{errors.phone.message}</p>}
                         </td>
                       </tr>
                       <tr>
                         <td>{strings.detail.email}</td>
                         <td>
-                          <input
-                            type="text"
-                            name="email"
-                            value={selectedUser.email}
-                            onChange={handleInputChange}
-                            required
-                          />
+                          <input type="text" {...register('email')} />
+                          {errors.email && <p>{errors.email.message}</p>}
                         </td>
                       </tr>
                       <tr>
                         <td>{strings.detail.address}</td>
                         <td>
-                          <input
-                            type="text"
-                            name="address"
-                            value={selectedUser.address}
-                            onChange={handleInputChange}
-                            required
-                          />
+                          <input type="text" {...register('address')} />
+                          {errors.address && <p>{errors.address.message}</p>}
                         </td>
                       </tr>
                       <tr>
                         <td>{strings.detail.job}</td>
                         <td>
-                          <input
-                            type="text"
-                            name="job"
-                            value={selectedUser.job}
-                            onChange={handleInputChange}
-                            required
-                          />
+                          <input type="text" {...register('job')} />
+                          {errors.job && <p>{errors.job.message}</p>}
                         </td>
                       </tr>
                       <tr>
                         <td>{strings.detail.position}</td>
                         <td>
-                          <input
-                            type="text"
-                            name="position"
-                            value={selectedUser.position}
-                            onChange={handleInputChange}
-                            required
-                          />
+                          <input type="text" {...register('position')} />
+                          {errors.position && <p>{errors.position.message}</p>}
                         </td>
                       </tr>
                       <tr>
                         <td>{strings.detail.company}</td>
                         <td>
-                          <input
-                            type="text"
-                            name="company"
-                            value={selectedUser.company}
-                            onChange={handleInputChange}
-                            required
-                          />
+                          <input type="text" {...register('company')} />
+                          {errors.company && <p>{errors.company.message}</p>}
                         </td>
                       </tr>
                       <tr>
                         <td>{strings.detail.working_address}</td>
                         <td>
-                          <input
-                            type="text"
-                            name="workingAddress"
-                            value={selectedUser.workingAddress}
-                            onChange={handleInputChange}
-                            required
-                          />
+                          <input type="text" {...register('workingAddress')} />
+                          {errors.workingAddress && <p>{errors.workingAddress.message}</p>}
                         </td>
                       </tr>
                     </tbody>
