@@ -7,8 +7,6 @@ import { EditContent } from './EditStyled';
 import { EMPTY, PARAMS, PATH, QUESTION_MARK } from '../../../constants/Common';
 import { strings } from '../../../localization/Localization';
 import useAuth from '../../../shared/hooks/useAuth';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import SkeletonCustomize from '../../skeleton/SkeletonCustomize';
 import { IEditInput, validationSchema } from './EditFunction';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -103,7 +101,7 @@ const EditUser = () => {
       <Container>
         <Wrapper>
           <PageTittle>
-            <p>{strings.edit.edit_title || <Skeleton />}</p>
+            <p>{strings.edit.edit_title}</p>
           </PageTittle>
           {error ? (
             <> {strings.common.error_loading_msg} </>
