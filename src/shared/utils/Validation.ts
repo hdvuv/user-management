@@ -2,7 +2,7 @@
  * Regex to validate
  */
 export const FORMAT = {
-  EMAIL: /^[\w-\.]+@([\w-]+\.)+[\w-]$/,
+  EMAIL: /^[\w-\.]+@([\w-]+\.)+[\w-]{1,4}$/,
   PHONE: /^[0-9]{10}$/,
 };
 
